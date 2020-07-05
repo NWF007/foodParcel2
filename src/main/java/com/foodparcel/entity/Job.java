@@ -1,35 +1,32 @@
 package com.foodparcel.entity;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 public class Job {
-    private String jobTitle, department;
+    private String jobTitle;
 
     public Job(JobBuilder jobBuilder) {
         this.jobTitle = jobBuilder.jobTitle;
-        this.department = jobBuilder.department;
     }
 
     public String getJobTitle() {
         return jobTitle;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
     @Override
     public String toString() {
         return "Job{" +
                 "jobTitle='" + jobTitle + '\'' +
-                ", department='" + department + '\'' +
                 '}';
     }
 
     public static class JobBuilder{
-        private String jobTitle, department;
+        private String jobTitle;
 
-        public JobBuilder(String jobTitle, String department) {
-            this.jobTitle = jobTitle;
-            this.department = department;
+        public JobBuilder() {
         }
 
         public JobBuilder setJobTitle(String jobTitle) {
@@ -37,14 +34,8 @@ public class Job {
             return this;
         }
 
-        public JobBuilder setDepartment(String department) {
-            this.department = department;
-            return this;
-        }
-
         public JobBuilder copy(Job job){
             this.jobTitle = job.jobTitle;
-            this.department = job.department;
             return this;
         }
 
