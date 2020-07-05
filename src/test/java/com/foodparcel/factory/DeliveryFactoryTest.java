@@ -9,10 +9,12 @@ import static org.junit.Assert.*;
 public class DeliveryFactoryTest {
 
     @Test
-    public void getDeliveryAddress() {
+    public void createDelivery() {
 
-        Delivery delivery = DeliveryFactory.getDeliveryAddress("Cape Town");
-        Assert.assertEquals(null, delivery.getDeliveryDate());
+
+        Boolean Yes = null;
+        Delivery delivery = DeliveryFactory.createDelivery("Cape Town", "28 June 2020", Yes);
+        Assert.assertEquals("testDeliveryDate", delivery.getDeliveryAddress());
 
     }
 }
