@@ -13,7 +13,8 @@ public class DeliveryFactoryTest {
 
 
         Boolean Yes = null;
-        Delivery delivery = DeliveryFactory.createDelivery("Cape Town", "28 June 2020", Yes);
+        Delivery delivery;
+        delivery = DeliveryFactory.createDelivery("Cape Town", "28 June 2020", Yes);
         Assert.assertEquals("testDeliveryDate", delivery.getDeliveryAddress());
 
     }

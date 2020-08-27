@@ -2,7 +2,7 @@ package com.foodparcel.entity;
 
 public class Delivery {
 
-    private String deliveryAddress, deliveryDate;
+    private String deliveryAddress, deliveryDate, deliveryID;
     private Boolean delivered;
 
 
@@ -10,9 +10,12 @@ public class Delivery {
         this.deliveryAddress = builder.deliveryAddress;
         this.deliveryDate = builder.deliveryDate;
         this.delivered = builder.delivered;
+        this.deliveryID = builder.deliveryID;
 
 
     }
+
+    public String getDeliveryID(){ return deliveryID;}
 
     public String getDeliveryAddress() {
         return deliveryAddress;
@@ -35,8 +38,11 @@ public class Delivery {
                 '}';
     }
 
+    public void setDeliveryID(String deliveryID) {
+    }
+
     public static class Builder {
-        private String deliveryAddress, deliveryDate;
+        private String deliveryAddress, deliveryDate, deliveryID;
         private Boolean delivered;
 
         public Builder setDeliveryAddress(String deliveryAddress) {
@@ -54,10 +60,15 @@ public class Delivery {
             return this;
         }
 
+        public void setDeliveryID(String deliveryID) {
+            this.deliveryID = deliveryID;
+        }
+
         public Builder copy(Delivery delivery) {
             this.deliveryAddress = delivery.deliveryAddress;
             this.deliveryDate = delivery.deliveryDate;
             this.delivered = delivery.delivered;
+            this.deliveryID = delivery.deliveryID;
             return this;
         }
 
