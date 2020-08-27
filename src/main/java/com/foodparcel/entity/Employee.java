@@ -1,8 +1,13 @@
 package com.foodparcel.entity;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 public class Employee {
     private String employeeNumber, identityNumber, firstName, lastName,  employmentDate;
-    private Job jobTitle, department;
+    private Job job;
 
     public Employee() {}
 
@@ -11,8 +16,7 @@ public class Employee {
         this.identityNumber = builder.identityNumber;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
-        this.jobTitle = builder.jobTitle;
-        this.department = builder.department;
+        this.job = builder.jobTitle;
         this.employmentDate = builder.employmentDate;
     }
 
@@ -33,11 +37,7 @@ public class Employee {
     }
 
     public Job getJobTitle() {
-        return jobTitle;
-    }
-
-    public Job getDepartment() {
-        return department;
+        return job;
     }
 
     public String getEmploymentDate() {
@@ -46,29 +46,22 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Employee{\n" +
                 "employeeNumber='" + employeeNumber + '\'' +
-                ", identityNumber='" + identityNumber + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", employmentDate='" + employmentDate + '\'' +
-                ", jobTitle=" + jobTitle +
-                ", department=" + department +
+                ",\n identityNumber='" + identityNumber + '\'' +
+                ",\n firstName='" + firstName + '\'' +
+                ",\n lastName='" + lastName + '\'' +
+                ",\n employmentDate='" + employmentDate + '\'' +
+                ",\n jobTitle=" + job  + "\n"+
                 '}';
     }
 
     public static class EmployeeBuilder {
         private String employeeNumber, identityNumber, firstName, lastName, employmentDate;
-        private Job jobTitle, department;
+        private Job jobTitle;
 
-        public EmployeeBuilder(String employeeNumber, String identityNumber, String firstName, String lastName, String employmentDate, Job jobTitle, Job department) {
-            this.employeeNumber = employeeNumber;
-            this.identityNumber = identityNumber;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.employmentDate = employmentDate;
-            this.jobTitle = jobTitle;
-            this.department = department;
+        public EmployeeBuilder(){
+
         }
 
         public EmployeeBuilder setEmployeeNumber(String employeeNumber) {
@@ -96,11 +89,6 @@ public class Employee {
             return this;
         }
 
-        public EmployeeBuilder setDepartment(Job department) {
-            this.department = department;
-            return this;
-        }
-
         public EmployeeBuilder setEmploymentDate(String employmentDate) {
             this.employmentDate = employmentDate;
             return this;
@@ -112,8 +100,7 @@ public class Employee {
             this.firstName = employee.firstName;
             this.lastName = employee.lastName;
             this.employmentDate = employee.employmentDate;
-            this.jobTitle = employee.jobTitle;
-            this.department = employee.department;
+            this.jobTitle = employee.job;
             return this;
         }
 
