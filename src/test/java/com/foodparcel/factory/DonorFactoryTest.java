@@ -11,9 +11,7 @@ public class DonorFactoryTest {
     @Test
     public void createDonor() {
         Donor donor = DonorFactory.createDonor("testName", "testSurname", "testEmail",
-                "testID", "testPhoneNumber");
+                 "testPhoneNumber");
         Assert.assertEquals("testName", donor.getFirstName());
-
-
     }
 }
