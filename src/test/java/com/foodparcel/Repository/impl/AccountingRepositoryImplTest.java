@@ -12,6 +12,13 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
+/**
+ * Author: Amy Johnston (218188773)
+ * AccountingRepositoryImplTest.java
+ * Submission 7
+ * Date: 30 August 2020
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AccountingRepositoryImplTest {
     private static AccountingRepository repository = AccountingRepositoryImpl.getAccountingRepository();
