@@ -217,15 +217,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-<<<<<<< HEAD
       <dependency>
           <groupId>io.soabase.record-builder</groupId>
           <artifactId>record-builder-core</artifactId>
           <version>1.7.ea</version>
           <scope>test</scope>
       </dependency>
-=======
->>>>>>> fa981789147286f0246885eb07d61397839685d1
   </dependencies>
 
   <build>
