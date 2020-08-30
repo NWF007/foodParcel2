@@ -1,3 +1,4 @@
+/*
 package com.foodparcel.Repository.impl;
 
 import com.foodparcel.Repository.DeliveryRepository;
@@ -10,7 +11,7 @@ import java.util.Set;
 import java.util.Map;
 import java.util.*;
 
-@Repository
+Repository
 public class DeliveryRepositoryImpl implements DeliveryRepository{
 
     private static DeliveryRepositoryImpl deliveryRepository = null;
@@ -79,3 +80,4 @@ public class DeliveryRepositoryImpl implements DeliveryRepository{
 
 
 
+*/
