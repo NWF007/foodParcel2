@@ -1,67 +1,26 @@
-package com.foodparcel.entity;
+package com.foodparcel.factory;
 
-public class Delivery {
+import com.foodparcel.entity.Accounting;
+import com.foodparcel.util.IDGenerator;
 
-    private String deliveryAddress, deliveryDate, deliveryID;
+/**
+ * Author: Amy Johnston (218188773)
+ * AccountingFactory.java
+ * Submission 6
+ * Date: 6 July 2020
+ */
 
-    public Delivery(Builder builder){
-        this.deliveryAddress = builder.deliveryAddress;
-        this.deliveryDate = builder.deliveryDate;
-        this.deliveryID = builder.deliveryID;
-
+public class AccountingFactory {
+    public static Accounting createAccounting(double income, double expense, double budget, int incomeTransactionId, int expenseTransactionId) {
+        //String statementId = IDGenerator.generateId();
+        Accounting accounting = new Accounting.Builder()
+                .setStatementId(IDGenerator.generateId())
+                .setIncome(income)
+                .setExpense(expense)
+                .setBudget(budget)
+                .setIncomeTransactionId(incomeTransactionId)
+                .setExpenseTransactionId(expenseTransactionId)
+                .build();
+        return accounting;
     }
-
-    public String getDeliveryAddress(){
-        return deliveryAddress;
-    }
-
-    public String getDeliveryDate(){
-        return deliveryDate;
-    }
-
-    public String getDeliveryID(){
-        return deliveryID;
-    }
-
-    @Override
-    public String toString(){
-        return "Delivery{\n"+
-                "deliveryAddress=' " + deliveryAddress + '\''+
-                ",\n deliveryDate=' " + deliveryAddress + '\''+
-                ", \n deliveryID=' " + deliveryID + "\n" + '}';
-    }
-
-    public static class Builder{
-        private String deliveryAddress, deliveryDate, deliveryID;
-
-        public Builder setDeliveryAddress (String deliveryAddress){
-            this.deliveryAddress = deliveryAddress;
-            return this;
-        }
-
-        public Builder setDeliveryDate (String deliveryDate){
-            this.deliveryDate = deliveryAddress;
-            return this;
-        }
-
-        public Builder setDeliveryID (String deliveryID){
-            this.deliveryID = deliveryID;
-            return this;
-        }
-
-        public Builder copy (Delivery delivery){
-            this.deliveryAddress = delivery.deliveryAddress;
-            this.deliveryDate = delivery.deliveryDate;
-            this.deliveryID = delivery.deliveryID;
-            return this;
-        }
-
-        public Delivery build(){
-            return new Delivery(this);
-        }
-
-        public void setDelivery(String long_street, String s, String s1) {
-        }
-    }
-
 }
