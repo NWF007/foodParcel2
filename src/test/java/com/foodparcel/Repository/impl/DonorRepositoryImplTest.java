@@ -11,7 +11,6 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DonorRepositoryImplTest {
 
-<<<<<<< HEAD
     private static DonorRepository repository = DonorRepositoryImpl.getRepository();
     private static Donor donor = DonorFactory.createDonor("Name", "testSurname",
             "testEmail", "testPhoneNumber");
