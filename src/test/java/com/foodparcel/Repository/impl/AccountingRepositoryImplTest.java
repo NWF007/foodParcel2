@@ -22,8 +22,8 @@ public class AccountingRepositoryImplTest {
     public void a_create() {
         Accounting created = repository.create(accounting);
         assertEquals(accounting.getStatementId(), created.getStatementId());
-        //final String msg = "Created: " + created;
         System.out.println("Created: " + created);
+        //Integer.toHexString(System.identityHashCode(created));
     }
 
     @Test
@@ -31,20 +31,24 @@ public class AccountingRepositoryImplTest {
         Accounting read = repository.read(accounting.getStatementId());
         assertEquals(accounting.getStatementId(), read.getStatementId());
         System.out.println("Read: " + read);
+        //Integer.toHexString(System.identityHashCode(read));
     }
 
     @Test
     public void c_update() {
-        Accounting updated = new Accounting.Builder().copy(accounting).setIncome(34567.89).build();
+        Accounting updated = new Accounting.Builder().copy(accounting).setIncome(31467.89).build();
         updated = repository.update(updated);
-        assertEquals("Failed: ", accounting.getStatementId(), updated.getStatementId());
-        assertNotEquals("Failed: ", accounting.getIncome(), updated.getIncome());
+        assertEquals(accounting.getStatementId(), updated.getStatementId());
+        assertNotEquals(accounting.getIncome(), updated.getIncome());
         System.out.println("Updated: " + updated);
+        //Integer.toHexString(System.identityHashCode(updated));
     }
 
     @Test
     public void e_delete() {
         repository.delete(accounting.getStatementId());
+        Accounting gone = repository.read(accounting.getStatementId());
+        assertNull(gone);
         System.out.println("Deleted!");
     }
 
@@ -52,6 +56,7 @@ public class AccountingRepositoryImplTest {
     public void d_getAll() {
         Set<Accounting> accountings = repository.getAll();
         assertEquals(1, accountings.size());
-        System.out.println(repository.getAll());
+        System.out.println("Get all: " + repository.getAll());
+        //Integer.toHexString(System.identityHashCode(repository.getAll()));
     }
 }
