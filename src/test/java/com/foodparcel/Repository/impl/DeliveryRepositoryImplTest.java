@@ -53,6 +53,9 @@ public class DeliveryRepositoryImplTest {
 
         //}
 
+    //}
+
+
     @Test
     public void e_delete() {
         System.out.println("All deliveries: " + deliveryRepository.getAll());
