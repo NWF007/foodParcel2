@@ -1,60 +1,58 @@
 package com.foodparcel.Repository.impl;
 
+
 import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
 import com.foodparcel.factory.DeliveryFactory;
+import org.junit.Assert;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class DeliveryRepositoryImplTest {
 
-    private DeliveryRepositoryImpl deliveryRepository;
+    private static DeliveryRepository deliveryRepository = DeliveryRepositoryImpl.getDeliveryRepository();
+    private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August 2020", "1b324");
 
-    @Test
-    public void create() {
 
-        Delivery delivery = DeliveryFactory.getDelivery("Long Street", null);
-        deliveryRepository.create(delivery);
-
-        assertNotNull(deliveryRepository.getAll());
+    public void d_getAll() {
+        System.out.println("All Jobs: " + deliveryRepository.getAll());
+        assertNotNull(delivery);
     }
 
     @Test
-    public void read() {
-        Delivery delivery = DeliveryFactory.getDelivery("Long Street", null);
-        deliveryRepository.create(delivery);
-        assertNotNull(deliveryRepository.getAll());
-        Delivery from = deliveryRepository.read(delivery.getDeliveryID());
-        assertEquals(delivery, from);
+    public void a_create() {
+        Delivery created = deliveryRepository.create(delivery);
+        Assert.assertEquals(delivery.getDeliveryID(), created.getDeliveryID());
+        System.out.println("Created: " + created);
     }
 
     @Test
-    public void update() {
-        Delivery delivery = DeliveryFactory.getDelivery("Long street", null);
-        deliveryRepository.create(delivery);
+    public void b_read() {
+        Delivery delivery1 = deliveryRepository.read(delivery.getDeliveryID());
         assertNotNull(deliveryRepository.getAll());
-        Delivery deliveryAddress = DeliveryFactory.getDelivery("Long Street", null);
-        deliveryAddress.setDeliveryID(delivery.getDeliveryID());
-        deliveryRepository.update(deliveryAddress);
-
-        Delivery updated = deliveryRepository.read(deliveryAddress.getDeliveryID());
-        assertEquals(deliveryAddress, updated);
-
-    }
+        System.out.println("All the jobs: " +delivery1);
+        }
 
     @Test
-    public void delete() {
-        Delivery delivery = DeliveryFactory.getDelivery("Long Street", null);
-        deliveryRepository.create(delivery);
-        assertNotNull(deliveryRepository.getAll());
+     public void c_update(){
+        Delivery deliveryUpdate = new Delivery.Builder().copy(delivery).setDeliveryAddress("Long Street").setDeliveryDate("28 August 2020").build();
+        deliveryUpdate = deliveryRepository.update(deliveryUpdate);
+        assertNotEquals(delivery,deliveryUpdate);
+        System.out.println(deliveryUpdate);
+        }
+        
+      @Test  
+      public void e_delete(){
+        System.out.println("All deliveries: " +deliveryRepository.getAll());
         deliveryRepository.delete(delivery.getDeliveryID());
-        Delivery notThere = deliveryRepository.read(delivery.getDeliveryID());
-        assertNull(notThere);
+        System.out.println("All deliveries: " +deliveryRepository.getAll());
+        assertNull(delivery);
+        }
 
-    }
+        }
 
-}
+
+
 
 
 
