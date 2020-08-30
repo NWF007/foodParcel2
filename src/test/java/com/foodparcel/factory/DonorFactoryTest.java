@@ -1,5 +1,9 @@
-package com.foodparcel.factory;
 
+package com.foodparcel.factory;
+/**
+ * Author: Yusrah Soeker
+ * Student number: 218150768
+ * */
 import com.foodparcel.entity.Donor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,9 +15,7 @@ public class DonorFactoryTest {
     @Test
     public void createDonor() {
         Donor donor = DonorFactory.createDonor("testName", "testSurname", "testEmail",
-                "testID", "testPhoneNumber");
+                 "testPhoneNumber");
         Assert.assertEquals("testName", donor.getFirstName());
-
-
     }
 }

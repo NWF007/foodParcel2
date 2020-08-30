@@ -47,13 +47,13 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
 
         public Delivery update (Delivery delivery){
 
-            Delivery oldDelivery = read(delivery.getDeliveryID());
-            if (oldDelivery!= null) {
-                this.deliveries.remove(oldDelivery);
-                this.deliveries.add(delivery);
+            Delivery deliveryID = read(delivery.getDeliveryID());
+            if (deliveryID != null) {
+                deliveries.remove(deliveryID);
+                deliveries.add(delivery);
             }
 
-            return delivery;
+            return null;
         }
 
         @Override
