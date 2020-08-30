@@ -1,5 +1,10 @@
 package com.foodparcel.Repository.impl;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 import com.foodparcel.Repository.JobRepository;
 import com.foodparcel.entity.Job;
 import com.foodparcel.factory.JobFactory;
@@ -18,39 +23,37 @@ public class JobRepositoryImplTest {
 
     @Test
     public void d_getAll() {
-        System.out.println("All jobs: " +jobRepository.getAll());
-        assertNotNull(job);
+        Assert.assertNotNull(jobRepository);
+        System.out.println("Get all: " + jobRepository.getAll());
     }
 
     @Test
     public void a_create() {
         Job created = jobRepository.create(job);
         Assert.assertEquals(job.getJobTitle(), created.getJobTitle());
-        System.out.println("Created: " +created);
+        System.out.println("Created: " + created);
     }
 
     @Test
     public void b_read() {
-        Job jobT = jobRepository.read(job.getJobTitle());
+        Job readJob = jobRepository.read(job.getJobTitle());
 
-        assertNotNull(jobRepository.getAll());
-        System.out.println("All the jobs: " + jobT);
+        Assert.assertNotNull(jobRepository.getAll());
+        System.out.println("Read: " + readJob);
     }
 
     @Test
     public void c_update() {
         Job jobUpdate = new Job.JobBuilder().copy(job).setJobTitle("Manager").build();
         jobUpdate = jobRepository.update(jobUpdate);
-        assertNotEquals(job, jobUpdate);
-        System.out.println(jobUpdate);
-
+        Assert.assertNotEquals(job, jobUpdate);
+        System.out.println("Updated: "+jobUpdate);
     }
 
     @Test
     public void e_delete() {
-        System.out.println("All jobs: " +jobRepository.getAll());
         jobRepository.delete(job.getJobTitle());
-        System.out.println("All jobs: " +jobRepository.getAll());
-        assertNull(job);
+        System.out.println("Deleted: " +jobRepository.getAll());
+        Assert.assertNotNull(job);
     }
 }

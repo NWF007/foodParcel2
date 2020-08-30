@@ -17,7 +17,7 @@ public class EmployeeFactoryTest {
     @Test
     public void getEmployee() {
         Employee employee = EmployeeFactory.createEmployee(
-                "123456","Nico", "Fortuin", "1 June 2020", JobFactory.createJob("Accountant")
+                "12521","123456","Nico", "Fortuin", "1 June 2020", JobFactory.createJob("Accountant")
         );
 
         System.out.println(employee);

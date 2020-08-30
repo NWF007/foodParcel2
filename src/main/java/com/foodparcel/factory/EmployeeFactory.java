@@ -11,9 +11,9 @@ import com.foodparcel.util.IDGenerator;
 
 public class EmployeeFactory {
 
-    public static Employee createEmployee(String identityNumber, String firstName, String lastName, String employmentDate, Job job){
+    public static Employee createEmployee(String empNumber, String identityNumber, String firstName, String lastName, String employmentDate, Job job){
         Employee employee = new Employee.EmployeeBuilder()
-                .setEmployeeNumber(IDGenerator.generateId())
+                .setEmployeeNumber(empNumber)
                 .setIdentityNumber(identityNumber)
                 .setFirstName(firstName)
                 .setLastName(lastName)

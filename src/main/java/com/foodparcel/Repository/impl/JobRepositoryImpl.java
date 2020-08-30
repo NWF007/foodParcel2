@@ -1,5 +1,10 @@
 package com.foodparcel.Repository.impl;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 import com.foodparcel.Repository.JobRepository;
 import com.foodparcel.entity.Job;
 
@@ -12,7 +17,7 @@ public class JobRepositoryImpl implements JobRepository {
     private Set<Job> jobs;
 
     public JobRepositoryImpl(){
-        jobs = new HashSet<>();
+        this.jobs = new HashSet<>();
     }
 
     public static JobRepository getJobRepository(){
@@ -24,40 +29,41 @@ public class JobRepositoryImpl implements JobRepository {
 
     @Override
     public Set<Job> getAll() {
-        return jobs;
+        return this.jobs;
     }
 
     @Override
     public Job create(Job job) {
-        jobs.add(job);
+        this.jobs.add(job);
         return job;
     }
 
     @Override
     public Job read(String title) {
-        return jobs.stream()
-                .filter(job -> job.getJobTitle().equalsIgnoreCase(title))
+        return this.jobs.stream()
+                .filter(job -> job.getJobTitle()
+                        .trim()
+                        .equalsIgnoreCase(title))
                 .findAny()
                 .orElse(null);
     }
 
     @Override
     public Job update(Job job) {
-
-        Job jobTitle = read(job.getJobTitle());
-        if (jobTitle != null){
-            jobs.remove(jobTitle);
-            jobs.add(job);
-            return job;
+        Job oldJob = read(job.getJobTitle());
+        if (oldJob != null){
+            this.jobs.remove(oldJob);
+            this.jobs.add(job);
         }
-        return null;
+        return job;
     }
 
     @Override
     public void delete(String jobTitle) {
         Job job = read(jobTitle);
 
-        if (job != null)
-            jobs.remove(job);
+        if (job != null) {
+            this.jobs.remove(job);
+        }
     }
 }

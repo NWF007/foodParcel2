@@ -4,13 +4,13 @@ import com.foodparcel.entity.Delivery;
 
 public class DeliveryFactory {
 
-    public static Delivery createDelivery(String deliveryAddress, String deliveryDate, String deliveryID, Boolean Delivered) {
+    public static Delivery createDelivery(String deliveryAddress, String deliveryDate, String deliveryID, boolean Delivered) {
 
         Delivery delivery = new Delivery.Builder()
                 .setDeliveryAddress(deliveryAddress)
                 .setDeliveryDate(deliveryDate)
                 .setDeliveryID(deliveryID)
-                .setDelivered(delivered)
+                .setDelivered(Delivered)
                 .build();
 
 
