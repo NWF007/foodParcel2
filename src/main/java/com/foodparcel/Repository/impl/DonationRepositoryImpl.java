@@ -2,6 +2,7 @@ package com.foodparcel.Repository.impl;
 
 import com.foodparcel.Repository.DonationRepository;
 import com.foodparcel.entity.Donation;
+import com.foodparcel.entity.Donor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,22 +37,20 @@ public class DonationRepositoryImpl implements DonationRepository {
 
     @Override
     public Donation update(Donation donation) {
-        boolean deleteDonation = delete(donation.getDonationId());
-        if (deleteDonation) {
+        Donation oldDonation = read(donation.getDonationId());
+        if(oldDonation != null){
+            this.donationDB.remove(oldDonation);
             this.donationDB.add(donation);
-            return donation;
         }
-        return null;
+        return donation;
     }
 
     @Override
-    public boolean delete(String donationId) {
+    public void delete(String donationId) {
         Donation donation = read(donationId);
         if(donation != null){
             this.donationDB.remove(donation);
-            return true;
         }
-        return false;
     }
 
     @Override

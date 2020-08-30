@@ -35,22 +35,20 @@ public class DonorRepositoryImpl implements DonorRepository {
 
     @Override
     public Donor update(Donor donor) {
-        boolean deleteDonor = delete(donor.getId());
-        if (deleteDonor) {
+        Donor oldDonor = read(donor.getId());
+        if(oldDonor != null){
+            this.donorDB.remove(oldDonor);
             this.donorDB.add(donor);
-            return donor;
         }
-        return null;
+        return oldDonor;
     }
 
     @Override
-    public boolean delete(String id) {
+    public void delete(String id) {
         Donor donor = read(id);
         if(donor != null){
             this.donorDB.remove(donor);
-            return true;
         }
-        return false;
     }
 
     @Override

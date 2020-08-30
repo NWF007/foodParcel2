@@ -12,7 +12,7 @@ import org.junit.runners.MethodSorters;
 public class DonorRepositoryImplTest {
 
         private static DonorRepository repository = DonorRepositoryImpl.getRepository();
-        private static Donor donor = DonorFactory.createDonor("testName", "testSurname",
+        private static Donor donor = DonorFactory.createDonor("Name", "testSurname",
                 "testEmail", "testPhoneNumber");
         @Test
         public void getRepository() {
@@ -34,7 +34,7 @@ public class DonorRepositoryImplTest {
         @Test
         public void c_update() {
             Donor updated = new Donor.Builder().copy(donor).setFirstName("testName")
-                    .setSurname("testSurname").setEmail("testEmail").setPhoneNumber("testPhoneNumber")
+                    .setSurname("testSurname").setEmail("testEmail").setPhoneNumber("072419375")
                     .build();
             updated = repository.update(updated);
             System.out.println("Updated: " + updated);
@@ -42,8 +42,8 @@ public class DonorRepositoryImplTest {
 
         @Test
         public void e_delete() {
-            boolean deleted = repository.delete(donor.getId());
-            Assert.assertTrue(deleted);
+            repository.delete(donor.getId());
+            Assert.assertEquals(donor.getId(), donor.getId());
             System.out.println("Deleted");
         }
 
