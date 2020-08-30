@@ -1,5 +1,10 @@
 package com.foodparcel.entity;
 
+/**
+ * Craig Bailey
+ * 216178185
+ */
+
 public class Delivery {
 
     private String deliveryAddress, deliveryDate, deliveryID;
