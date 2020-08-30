@@ -6,6 +6,13 @@ import com.foodparcel.Repository.AccountingRepository;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Author: Amy Johnston (218188773)
+ * AccountingRepositoryImpl.java
+ * Submission 7
+ * Date: 30 August 2020
+ */
+
 public class AccountingRepositoryImpl implements AccountingRepository {
     private Set<Accounting> accountDB;
     private static AccountingRepository accountingRepository = null;
