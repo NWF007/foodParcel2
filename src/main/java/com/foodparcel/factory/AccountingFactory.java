@@ -12,9 +12,9 @@ import com.foodparcel.util.IDGenerator;
 
 public class AccountingFactory {
     public static Accounting createAccounting(double income, double expense, double budget, int incomeTransactionId, int expenseTransactionId) {
-        String statementId = IDGenerator.generateId();
+        //String statementId = IDGenerator.generateId();
         Accounting accounting = new Accounting.Builder()
-                .setStatementId(statementId)
+                .setStatementId(IDGenerator.generateId())
                 .setIncome(income)
                 .setExpense(expense)
                 .setBudget(budget)

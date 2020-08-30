@@ -47,6 +47,18 @@ public class Accounting {
         return expenseTransactionId;
     }
 
+    @Override
+    public String toString() {
+        return "Builder{" +
+                " statementId=" + statementId +
+                ", income=" + income +
+                ", expense=" + expense +
+                ", budget=" + budget +
+                ", incomeTransactionId=" + incomeTransactionId +
+                ", expenseTransactionId=" + expenseTransactionId +
+                '}';
+    }
+
     public static class Builder{
         private double income, expense, budget;
         private int incomeTransactionId, expenseTransactionId;
@@ -94,18 +106,6 @@ public class Accounting {
 
         public Accounting build(){
             return new Accounting(this);
-        }
-
-        @Override
-        public String toString() {
-            return "Builder{" +
-                    " statementId=" + statementId +
-                    ", income=" + income +
-                    ", expense=" + expense +
-                    ", budget=" + budget +
-                    ", incomeTransactionId=" + incomeTransactionId +
-                    ", expenseTransactionId=" + expenseTransactionId +
-                    '}';
         }
     }
 }
