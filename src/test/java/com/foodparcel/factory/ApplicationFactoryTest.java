@@ -10,8 +10,8 @@ public class ApplicationFactoryTest {
 
     @Test
     public void createApplication() {
-        Application a = ApplicationFactory.createApplication(941209130 , "Danielle",
-                "Johnson" ,074456567,"Mitchells Plain",2,3500.0);
-        Assert.assertTrue(a.getId()!=0);
+        Application a = ApplicationFactory.createApplication("941209130" , "Danielle",
+                "Johnson" ,"074456567","Mitchells Plain",2,3500.0);
+        Assert.assertTrue(!a.getId().equals("0"));
     }
 }
