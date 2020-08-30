@@ -1,26 +1,27 @@
 package com.foodparcel.entity;
 
 public class Application {
-    private long id , contactNumber ;
-    private int numberOfDependants ;
+    private String id ;
     private String firstName , lastName , homeAdrress ;
+    private String contactNumber ;
+    private int numberOfDependants ;
     private double income;
 
     private Application (Builder builder){
         this.id= builder.id;
-        this.contactNumber = builder.contactNumber;
-        this.numberOfDependants = builder.numberOfDependants;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.homeAdrress = builder.homeAdrress;
+        this.contactNumber = builder.contactNumber;
+        this.numberOfDependants = builder.numberOfDependants;
         this.income = builder.income;
     }
     //Getters
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public long getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
@@ -58,17 +59,17 @@ public class Application {
     }
 
     public static class Builder {
-        private long id , contactNumber ;
+        private String id , contactNumber ;
         private int numberOfDependants ;
         private String firstName , lastName , homeAdrress ;
         private double income;
 
 
-        public  Builder setid(long id) {
+        public  Builder setid(String id) {
             this.id = id;
             return  this;
         }
-        public  Builder setcontactNumber(long contactNumber) {
+        public  Builder setcontactNumber(String contactNumber) {
             this.contactNumber = contactNumber;
             return  this;
         }
