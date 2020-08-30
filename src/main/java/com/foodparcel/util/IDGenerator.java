@@ -9,8 +9,9 @@ import java.util.UUID;
 
 public class IDGenerator {
 
-    public String generateId(){
+    //public String generateId(){
+    public static String generateId(){
+
         return UUID.randomUUID().toString();
     }
-
 }

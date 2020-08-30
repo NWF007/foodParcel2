@@ -21,7 +21,7 @@ public class EmployeeRepositoryImplTest {
     private static EmployeeRepository employeeRepository = EmployeeRepositoryImpl.employeeRepository();
     private static IDGenerator idGenerator = new IDGenerator();
     private static Job job = JobFactory.createJob("Accountant");
-    private static Employee employee = EmployeeFactory.createEmployee(idGenerator.generateId(),"111", "Niko", "Fortuin", "12/08/2020", job);
+    private static Employee employee = EmployeeFactory.createEmployee("111", "Niko", "Fortuin", "12/08/2020", job);
 
     @Test
     public void d_getAll() {
