@@ -7,6 +7,7 @@ package com.foodparcel.entity;
  */
 
 public class Accounting {
+    private String statementId;
     private double income;
     private double expense;
     private double budget;
@@ -14,11 +15,16 @@ public class Accounting {
     private int expenseTransactionId;
 
     private Accounting(Builder builder){
+        this.statementId = builder.statementId;
         this.income = builder.income;
         this.expense = builder.expense;
         this.budget = builder.budget;
         this.incomeTransactionId = builder.incomeTransactionId;
         this.expenseTransactionId = builder.expenseTransactionId;
+    }
+
+    public String getStatementId() {
+        return statementId;
     }
 
     public double getIncome() {
@@ -43,8 +49,9 @@ public class Accounting {
 
     @Override
     public String toString() {
-        return "Accounting{" +
-                "income=" + income +
+        return "Builder{" +
+                " statementId=" + statementId +
+                ", income=" + income +
                 ", expense=" + expense +
                 ", budget=" + budget +
                 ", incomeTransactionId=" + incomeTransactionId +
@@ -55,6 +62,12 @@ public class Accounting {
     public static class Builder{
         private double income, expense, budget;
         private int incomeTransactionId, expenseTransactionId;
+        private String statementId;
+
+        public Builder setStatementId(String statementId){
+            this.statementId = statementId;
+            return this;
+        }
 
         public Builder setIncome(double income){
             this.income = income;
@@ -82,6 +95,7 @@ public class Accounting {
         }
 
         public Builder copy(Accounting accounting){
+            this.statementId = accounting.statementId;
             this.income = accounting.income;
             this.expense = accounting.expense;
             this.budget = accounting.budget;

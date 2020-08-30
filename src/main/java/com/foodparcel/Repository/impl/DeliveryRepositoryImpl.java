@@ -1,78 +1,78 @@
 package com.foodparcel.Repository.impl;
-
 import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
-
-import java.lang.annotation.Annotation;
 import java.util.HashSet;
-import java.util.HashMap;
 import java.util.Set;
-import java.util.Map;
-import java.util.*;
+import static javax.swing.text.html.parser.DTDConstants.ID;
 
-@Repository
-public class DeliveryRepositoryImpl implements DeliveryRepository{
+
+
+public class DeliveryRepositoryImpl implements DeliveryRepository {
 
     private static DeliveryRepositoryImpl deliveryRepository = null;
-    private Set <Delivery> deliveryAddress;
+    private Set<Delivery> deliveries;
 
-    public DeliveryRepositoryImpl(){
-        deliveryAddress = new HashSet<>();
+
+    public DeliveryRepositoryImpl() {
+        deliveries = new HashSet<>();
     }
 
-    public static DeliveryRepositoryImpl getDeliveryRepository(){
+    public static DeliveryRepository getDeliveryRepository() {
 
-        if(deliveryRepository == null){
-            return new DeliveryRepositoryImpl();
-        }
+        if (deliveryRepository == null) {
+            deliveryRepository = new DeliveryRepositoryImpl();
 
-        return deliveryRepository;
-    }
-
-
-    public Delivery create (Delivery delivery){
-        deliveryAddress.add(delivery);
-        return delivery;
-    }
-
-    public Delivery read( String ID){
-
-
-        return deliveryAddress.stream().filter(delivery -> delivery.getDeliveryID().equals(ID)).findAny().orElse(null);
+            return deliveryRepository;
 
         }
 
-        public Delivery update(Delivery delivery){
-
-            Delivery inDB = read(delivery.getDeliveryID());
-            if( inDB != null){
-                deliveryAddress.remove(inDB);
-                deliveryAddress.add(delivery);
-                return delivery;
-            }
-
-            return null;
-
-        }
-
-
-        public void delete(String id) {
-
-            Delivery inDB = read(id);
-            deliveryAddress.remove(inDB);
-
-        }
-
-
-        public Set<Delivery> getAll() {
-            return deliveryAddress;
-        }
-
-    @Override
-    public Class<? extends Annotation> annotationType() {
         return null;
     }
-}
+
+        public Set<Delivery> getAll () {
+            return deliveries;
+        }
+
+
+        public Delivery create (Delivery delivery){
+            deliveries.add(delivery);
+            return delivery;
+        }
+
+        public Delivery read (String ID){
+
+
+            return deliveries.stream().filter(delivery -> delivery.getDeliveryID().equals(ID)).findAny().orElse(null);
+        }
+
+        public Delivery update (Delivery delivery){
+
+            Delivery oldDelivery = read(delivery.getDeliveryID());
+            if (oldDelivery!= null) {
+                this.deliveries.remove(oldDelivery);
+                this.deliveries.add(delivery);
+            }
+
+            return delivery;
+        }
+
+        @Override
+        public void delete (String ID){
+
+            String deliveryID = null;
+            Delivery delivery = read(deliveryID);
+
+            if (delivery != null) {
+                deliveries.remove(delivery);
+
+            }
+
+
+        }
+
+    }
+
+
 
 
 
