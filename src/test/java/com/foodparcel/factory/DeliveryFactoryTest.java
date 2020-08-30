@@ -1,6 +1,4 @@
-/*
 package com.foodparcel.factory;
-
 import com.foodparcel.entity.Delivery;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,4 +24,4 @@ public class DeliveryFactoryTest {
 
 
     }
-}*/
+}
