@@ -6,6 +6,7 @@ import com.foodparcel.entity.Delivery;
 import com.foodparcel.factory.DeliveryFactory;
 import org.junit.Assert;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class DeliveryRepositoryImplTest {
@@ -30,30 +31,23 @@ public class DeliveryRepositoryImplTest {
     public void b_read() {
         Delivery delivery1 = deliveryRepository.read(delivery.getDeliveryID());
         assertNotNull(deliveryRepository.getAll());
-        System.out.println("All the jobs: " +delivery1);
-        }
+        System.out.println("All the jobs: " + delivery1);
+    }
 
     @Test
-     public void c_update(){
+    public void c_update() {
         Delivery deliveryUpdate = new Delivery.Builder().copy(delivery).setDeliveryAddress("Long Street").setDeliveryDate("28 August 2020").build();
         deliveryUpdate = deliveryRepository.update(deliveryUpdate);
-        assertNotEquals(delivery,deliveryUpdate);
+        assertNotEquals(delivery, deliveryUpdate);
         System.out.println(deliveryUpdate);
-        }
-        
-      @Test  
-      public void e_delete(){
-        System.out.println("All deliveries: " +deliveryRepository.getAll());
+    }
+
+    @Test
+    public void e_delete() {
+        System.out.println("All deliveries: " + deliveryRepository.getAll());
         deliveryRepository.delete(delivery.getDeliveryID());
-        System.out.println("All deliveries: " +deliveryRepository.getAll());
+        System.out.println("All deliveries: " + deliveryRepository.getAll());
         assertNull(delivery);
-        }
+    }
 
-        }
-
-
-
-
-
-
-
+}
