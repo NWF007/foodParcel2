@@ -217,6 +217,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>io.soabase.record-builder</groupId>
+          <artifactId>record-builder-core</artifactId>
+          <version>1.7.ea</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <build>
