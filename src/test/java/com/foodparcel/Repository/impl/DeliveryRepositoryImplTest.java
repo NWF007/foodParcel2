@@ -43,10 +43,11 @@ public class DeliveryRepositoryImplTest {
         
       @Test  
       public void e_delete(){
-        System.out.println("All deliveries: " +deliveryRepository.getAll());
         deliveryRepository.delete(delivery.getDeliveryID());
-        System.out.println("All deliveries: " +deliveryRepository.getAll());
-        assertNull(delivery);
+        Delivery gone = deliveryRepository.read(delivery.getDeliveryID());
+        assertNull(gone);
+        System.out.println("Deleted!");
+
         }
 
         }
