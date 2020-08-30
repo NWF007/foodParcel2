@@ -2,12 +2,10 @@ package com.foodparcel.entity;
 
 public class Volunteer {
 
-    private int volunteerNum = 0;
+    private String volunteerNum = "";
     private boolean availability = true;
     private String fName = "", lName ="";
     private long phoneNum, idNumber;
-    private String homeLanguage = "";
-    private String province = "";
     private int deliveriesMade = 0;
     private int hoursWorked = 0;
 
@@ -20,14 +18,12 @@ public class Volunteer {
         this.phoneNum = volunteer.phoneNum;
         this.idNumber = volunteer.idNumber;
         this.availability = volunteer.availability;
-        this.homeLanguage = volunteer.homeLanguge;
-        this.province = volunteer.province;
         this.deliveriesMade = volunteer.diliveriesMade;
         this.hoursWorked = volunteer.hoursWorked;
 
     }
 
-    public int getVolunteerNum() {
+    public String getVolunteerNum() {
         return volunteerNum;
     }
 
@@ -51,14 +47,6 @@ public class Volunteer {
         return availability;
     }
 
-    public String getHomeLanguage() {
-        return homeLanguage;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
     public int getDeliveriesMade() {
         return deliveriesMade;
     }
@@ -76,8 +64,6 @@ public class Volunteer {
                 ", lName='" + lName + '\'' +
                 ", phoneNum=" + phoneNum +
                 ", idNumber=" + idNumber +
-                ", homeLanguage='" + homeLanguage + '\'' +
-                ", province='" + province + '\'' +
                 ", deliveriesMade=" + deliveriesMade +
                 ", hoursWorked=" + hoursWorked +
                 '}';
@@ -85,14 +71,14 @@ public class Volunteer {
 
     public static class Builder {
 
-        private int volunteerNum = 0;
+        private String volunteerNum = "";
         private String fName="", lName="";
         private long phoneNum =0, idNumber =0;
-        private String homeLanguge = "", province = "";
+        private String homeLanguge = "";
         private boolean availability;
         private int diliveriesMade = 0, hoursWorked = 0;
 
-        public  Builder setVolunteerNum(int volunteerNum){
+        public  Builder setVolunteerNum(String volunteerNum){
 
             this.volunteerNum = volunteerNum;
             return this;
@@ -127,11 +113,6 @@ public class Volunteer {
             return this;
         }
 
-        public Builder setProvince(String province) {
-            this.province = province;
-            return this;
-        }
-
         public Builder setAvailability(boolean availability) {
             this.availability = availability;
             return this;
@@ -152,8 +133,6 @@ public class Volunteer {
             this.volunteerNum = volunteer.volunteerNum;
             this.availability = volunteer.availability;
             this.diliveriesMade = volunteer.deliveriesMade;
-            this.homeLanguge = volunteer.homeLanguage;
-            this.province = volunteer.province;
             this.hoursWorked = volunteer.hoursWorked;
             this.fName = volunteer.fName;
             this.lName = volunteer.lName;
