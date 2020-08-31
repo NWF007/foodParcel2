@@ -1,9 +1,11 @@
 package com.foodparcel.factory;
 
+
 /**
  * Craig Bailey
  * 216178185
  */
+
 
 import com.foodparcel.entity.Delivery;
 import com.foodparcel.util.IDGenerator;
@@ -16,6 +18,7 @@ public class DeliveryFactory {
                 .setDeliveryAddress(deliveryAddress)
                 .setDeliveryDate(deliveryDate)
                 .setDeliveryID(deliveryID)
+                .setDeliveryID(IDGenerator.generateId())
                 .build();
 
 

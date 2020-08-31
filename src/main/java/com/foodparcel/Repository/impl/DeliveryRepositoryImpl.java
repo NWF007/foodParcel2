@@ -3,7 +3,7 @@ import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
 import java.util.HashSet;
 import java.util.Set;
-
+import static javax.swing.text.html.parser.DTDConstants.ID;
 
 
 
@@ -13,7 +13,7 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
     private Set<Delivery> deliveries;
 
 
-    private DeliveryRepositoryImpl() {
+    public DeliveryRepositoryImpl() {
         deliveries = new HashSet<>();
     }
 
@@ -47,16 +47,16 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
 
     public Delivery update (Delivery delivery){
 
-        Delivery deliveryID = read(delivery.getDeliveryID());
-        if (deliveryID != null) {
-            deliveries.remove(deliveryID);
-            deliveries.add(delivery);
+        Delivery oldDelivery = read(delivery.getDeliveryID());
+        if (oldDelivery!= null) {
+            this.deliveries.remove(oldDelivery);
+            this.deliveries.add(delivery);
         }
 
-        return null;
+        return delivery;
     }
 
-
+    @Override
     public void delete (String ID){
 
         String deliveryID = null;

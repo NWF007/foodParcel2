@@ -7,9 +7,9 @@ package com.foodparcel.Repository.impl;
 
 
 
-import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
 import com.foodparcel.factory.DeliveryFactory;
+import com.foodparcel.Repository.DeliveryRepository;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,7 +46,6 @@ public class DeliveryRepositoryImplTest {
         deliveryUpdate = deliveryRepository.update(deliveryUpdate);
         assertNotEquals(delivery, deliveryUpdate);
         System.out.println(deliveryUpdate);
-
     }
 
 
