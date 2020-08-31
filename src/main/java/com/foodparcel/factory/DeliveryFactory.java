@@ -26,7 +26,5 @@ public class DeliveryFactory {
     }
 
 
-    public static Delivery getDelivery(String long_street, Object o) {
-        return null;
-    }
+
 }
