@@ -46,7 +46,21 @@ public class DeliveryRepositoryImplTest {
         deliveryUpdate = deliveryRepository.update(deliveryUpdate);
         assertNotEquals(delivery, deliveryUpdate);
         System.out.println(deliveryUpdate);
-    }
+        }
+        
+//      @Test
+//      public void e_delete(){
+//        deliveryRepository.delete(delivery.getDeliveryID());
+//        Delivery gone = deliveryRepository.read(delivery.getDeliveryID());
+//        assertNull(gone);
+//        System.out.println("Deleted!");
+//
+//        }
+
+        //}
+
+    //}
+
 
 
     @Test
@@ -56,6 +70,5 @@ public class DeliveryRepositoryImplTest {
         System.out.println("All deliveries: " + deliveryRepository.getAll());
         assertNull(delivery);
     }
-
 }
 
