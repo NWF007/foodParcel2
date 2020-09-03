@@ -6,11 +6,13 @@ package com.foodparcel.factory;
  * */
 
 import com.foodparcel.entity.Job;
+import com.foodparcel.util.IDGenerator;
 
 public class JobFactory {
 
     public static Job createJob(String jobTitle){
         Job job = new Job.JobBuilder()
+                .setJobNumber(IDGenerator.generateId())
                 .setJobTitle(jobTitle)
                 .build();
 
