@@ -6,11 +6,14 @@ package com.foodparcel.entity;
  * */
 
 public class Job {
-    private String jobTitle;
+    private String jobTitle, jobNumber;
 
     public Job(JobBuilder jobBuilder) {
         this.jobTitle = jobBuilder.jobTitle;
+        this.jobNumber = jobBuilder.jobNumber;
     }
+
+    public String getJobNumber() { return jobNumber; }
 
     public String getJobTitle() {
         return jobTitle;
@@ -18,13 +21,14 @@ public class Job {
 
     @Override
     public String toString() {
-        return "Job{" +
-                "jobTitle='" + jobTitle + '\'' +
+        return "Job {\n" +
+                "jobNumber='" + jobNumber + '\'' +
+                ", \njobTitle='" + jobTitle + '\'' + "\n"+
                 '}';
     }
 
     public static class JobBuilder{
-        private String jobTitle;
+        private String jobTitle, jobNumber;
 
         public JobBuilder() {
         }
@@ -34,8 +38,14 @@ public class Job {
             return this;
         }
 
+        public JobBuilder setJobNumber(String jobNumber) {
+            this.jobNumber = jobNumber;
+            return this;
+        }
+
         public JobBuilder copy(Job job){
             this.jobTitle = job.jobTitle;
+            this.jobNumber = job.jobNumber;
             return this;
         }
 
