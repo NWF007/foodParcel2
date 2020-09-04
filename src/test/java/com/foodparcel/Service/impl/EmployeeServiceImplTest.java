@@ -1,5 +1,10 @@
 package com.foodparcel.Service.impl;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 import com.foodparcel.Service.EmployeeService;
 import com.foodparcel.entity.Employee;
 import com.foodparcel.entity.Job;
