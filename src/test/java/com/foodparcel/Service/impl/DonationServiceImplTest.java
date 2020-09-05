@@ -1,31 +1,31 @@
-package com.foodparcel.Repository.impl;
+package com.foodparcel.Service.impl;
 /**Yusrah Soeker
  * 218150768
  */
-import com.foodparcel.Repository.DonationRepository;
+import com.foodparcel.Service.DonationService;
 import com.foodparcel.entity.Donation;
 import com.foodparcel.factory.DonationFactory;
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class DonationRepositoryImplTest {
+public class DonationServiceImplTest {
 
-    private static DonationRepository donationRepository = DonationRepositoryImpl.getDonationRepository();
+    private static DonationService donationService = DonationServiceImpl.getDonationService();
     private static Donation donation = DonationFactory.createDonation("testDate", 100);
 
     @Test
     public void a_create() {
-        Donation created = donationRepository.create(donation);
-        Assert.assertEquals(donation.getDonationId(), created.getDonationId());
+        Donation created = donationService.create(donation);
+        assertEquals(donation.getDonationId(), created.getDonationId());
         System.out.println("Created: " + created);
     }
 
     @Test
     public void b_read() {
-        Donation read = donationRepository.read(donation.getDonationId());
+        Donation read = donationService.read(donation.getDonationId());
         System.out.println("Read: " + read);
     }
 
@@ -33,19 +33,20 @@ public class DonationRepositoryImplTest {
     public void c_update() {
         Donation updated = new Donation.Builder().copy(donation).setDonationDate("testDate")
                 .setDonateAmount(125).build();
-        updated = donationRepository.update(updated);
+        updated = donationService.update(updated);
         System.out.println("Updated: " + updated);
     }
 
     @Test
     public void e_delete() {
-        donationRepository.delete(donation.getDonationId());
-        Assert.assertEquals(donation.getDonationId(), donation.getDonationId());
+        donationService.delete(donation.getDonationId());
+        assertEquals(donation.getDonationId(), donation.getDonationId());
         System.out.println("Deleted");
     }
 
     @Test
     public void d_getAll() {
-        System.out.println("Get all: " + donationRepository.getAll());
+        System.out.println("Get all: " + donationService.getAll());
     }
+
 }
