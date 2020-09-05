@@ -1,5 +1,7 @@
 package com.foodparcel.Repository.impl;
-
+/**Yusrah Soeker
+ * 218150768
+ */
 import com.foodparcel.Repository.DonationRepository;
 import com.foodparcel.entity.Donation;
 import com.foodparcel.entity.Donor;
@@ -9,7 +11,7 @@ import java.util.Set;
 
 public class DonationRepositoryImpl implements DonationRepository {
 
-    private static DonationRepository repository = null;
+    private static DonationRepository donationRepository = null;
     private Set<Donation> donationDB;
 
     private DonationRepositoryImpl() {
@@ -17,9 +19,9 @@ public class DonationRepositoryImpl implements DonationRepository {
     }
 
     //singleton
-    public static DonationRepository getRepository(){
-        if(repository == null) repository = new DonationRepositoryImpl();
-        return repository;
+    public static DonationRepository getDonationRepository(){
+        if(donationRepository == null) donationRepository = new DonationRepositoryImpl();
+        return donationRepository;
     }
 
     @Override

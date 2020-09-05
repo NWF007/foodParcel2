@@ -1,17 +1,22 @@
-package com.foodparcel.Repository.impl;
+package com.foodparcel.Service.impl;
 /**Yusrah Soeker
  * 218150768
  */
 import com.foodparcel.Repository.DonorRepository;
+import com.foodparcel.Repository.impl.DonorRepositoryImpl;
+import com.foodparcel.entity.Donation;
 import com.foodparcel.entity.Donor;
+import com.foodparcel.factory.DonationFactory;
 import com.foodparcel.factory.DonorFactory;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import static org.junit.Assert.*;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class DonorRepositoryImplTest {
+public class DonorServiceImplTest {
 
     private static DonorRepository donorRepository = DonorRepositoryImpl.getDonorRepository();
     private static Donor donor = DonorFactory.createDonor("Name", "testSurname",
@@ -50,4 +55,5 @@ public class DonorRepositoryImplTest {
     public void d_getAll() {
         System.out.println("Get all: " + donorRepository.getAll());
     }
+
 }
