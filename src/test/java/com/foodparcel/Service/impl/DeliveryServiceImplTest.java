@@ -38,7 +38,7 @@ public class DeliveryServiceImplTest {
 
     @Test
     public void b_read() {
-        Delivery read = service.read(delivery.getDeliveryID());
+        Delivery read = service.create(delivery);
         System.out.println("Read: " +read);
     }
 

@@ -22,10 +22,9 @@ public class DeliveryRepositoryImplTest {
 
 
     public void d_getAll() {
-        System.out.println("All Jobs: " + deliveryRepository.getAll());
-        assertNotNull(delivery);
+        System.out.println("All Deliveries: " + deliveryRepository.getAll());
+        Assert.assertNotNull(deliveryRepository);
     }
-
     @Test
     public void a_create() {
         Delivery created = deliveryRepository.create(delivery);
@@ -35,9 +34,8 @@ public class DeliveryRepositoryImplTest {
 
     @Test
     public void b_read() {
-        Delivery delivery1 = deliveryRepository.read(delivery.getDeliveryID());
-        assertNotNull(deliveryRepository.getAll());
-        System.out.println("All the jobs: " + delivery1);
+        Delivery read = deliveryRepository.create(delivery);
+        System.out.println("Read: " + read);
     }
 
     @Test

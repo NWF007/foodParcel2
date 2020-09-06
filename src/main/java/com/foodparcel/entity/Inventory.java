@@ -15,7 +15,6 @@ public class Inventory {
     public int getParcelsInStock() {
         return parcelsInStock;
     }
-
     @Override
     public String toString() {
         return "Inventory{" +
