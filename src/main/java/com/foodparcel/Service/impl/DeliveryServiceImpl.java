@@ -4,6 +4,7 @@ import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.Repository.impl.DeliveryRepositoryImpl;
 import com.foodparcel.Service.DeliveryService;
 import com.foodparcel.entity.Delivery;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,22 +15,21 @@ import java.util.Set;
  * 216178185
  */
 
-
+@Service
 public class DeliveryServiceImpl implements DeliveryService {
 
     private static DeliveryService service = null;
     private DeliveryRepository deliveryRepository;
 
-    private DeliveryServiceImpl(){
+    private DeliveryServiceImpl() {
         this.deliveryRepository = DeliveryRepositoryImpl.getDeliveryRepository();
 
     }
 
-    public static DeliveryService getService(){
+    public static DeliveryService getService() {
         if (service == null) service = new DeliveryServiceImpl();
         return service;
     }
-
 
 
     @Override
