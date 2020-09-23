@@ -1,8 +1,12 @@
 package com.foodparcel.entity;
 
-public class Donation {
+import java.io.Serializable;
+
+public class Donation implements Serializable {
     private String donationId, donationDate;
     private double donateAmount;
+
+    public Donation(){}
 
     public Donation(Builder builder) {
         this.donationId = builder.donationId;

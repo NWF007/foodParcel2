@@ -1,4 +1,4 @@
-package com.foodparcel.controller;
+/*package com.foodparcel.controller;
 
 import com.foodparcel.Service.DeliveryService;
 import com.foodparcel.Service.impl.DeliveryServiceImpl;
@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Craig Bailey
  * 216178185
- */
+
 
 
 @RestController
@@ -55,6 +55,6 @@ public class DeliveryController {
 
 
     }
-
+*/
 
 

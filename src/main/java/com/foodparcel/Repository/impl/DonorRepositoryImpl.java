@@ -4,6 +4,8 @@ package com.foodparcel.Repository.impl;
  */
 import com.foodparcel.Repository.DonorRepository;
 import com.foodparcel.entity.Donor;
+import org.springframework.stereotype.Repository;
+
 import java.util.HashSet;
 import java.util.Set;
 
