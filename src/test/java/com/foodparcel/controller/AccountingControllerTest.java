@@ -104,7 +104,7 @@ public class AccountingControllerTest {
 
         assertNotNull(responseEntity);
         assertEquals(200, responseEntity.getStatusCodeValue());
-        System.out.println("All: " + accounting);
+        System.out.println("All: " + responseEntity.getBody());
     }
 
     @Test
