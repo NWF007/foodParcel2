@@ -26,6 +26,7 @@ public class AccountingControllerTest {
     @Autowired
     private TestRestTemplate restTemplate = null;
     private String startURL = "http://localhost:8888/accounting/";
+    private HttpStatus statusCode;
 
     @Test
     public void a_create() {
@@ -37,35 +38,45 @@ public class AccountingControllerTest {
         assertNotNull(postResponse.getBody());
         accounting = postResponse.getBody();
 
+        statusCode = postResponse.getStatusCode();
+        System.out.println("Status code: " + statusCode);
         System.out.println("Saved data: " + accounting);
+
         assertEquals(accounting.getStatementId(), postResponse.getBody().getStatementId());
-        System.out.println(postResponse);
-        System.out.println(postResponse.getBody());
+        assertEquals(200, postResponse.getStatusCodeValue());
+
         System.out.println("Created!");
     }
 
     @Test
     public void b_read() {
         String url = startURL + "read/" + accounting.getStatementId();
+        System.out.println("URL: " + url);
 
         ResponseEntity<Accounting> responseEntity = restTemplate.getForEntity(url, Accounting.class);
-        HttpStatus statusCode = responseEntity.getStatusCode();
-        System.out.println(statusCode);
+        statusCode = responseEntity.getStatusCode();
+        System.out.println("Status code: " + statusCode);
 
         assertEquals(accounting.getStatementId(), responseEntity.getBody().getStatementId());
         assertNotNull(accounting.getStatementId());
         assertNotNull(responseEntity.getBody().getStatementId());
+        assertEquals(200, responseEntity.getStatusCodeValue());
 
         System.out.println("Read: " + responseEntity.getBody());
     }
 
     @Test
     public void c_update() {
+        String url = startURL + "update";
+        System.out.println("URL: " + url);
+
         System.out.println("Old: " + accounting);
         Accounting updated = new Accounting.Builder().copy(accounting).setExpense(12937.32).build();
-        String url = startURL + "update";
         ResponseEntity<Accounting> postResponse = restTemplate.postForEntity(url, updated, Accounting.class);
+        statusCode = postResponse.getStatusCode();
+        System.out.println("Status code: " + statusCode);
 
+        assertEquals(200, postResponse.getStatusCodeValue());
         assertEquals(accounting.getStatementId(), updated.getStatementId());
         assertEquals(accounting.getStatementId(), postResponse.getBody().getStatementId());
         assertNotEquals(accounting.getExpense(), updated.getExpense());
@@ -75,6 +86,7 @@ public class AccountingControllerTest {
     @Test
     public void f_delete() {
         String url = startURL + "delete/" + accounting.getStatementId();
+        System.out.println("URL: " + url);
         restTemplate.delete(url);
         System.out.println("Deleted!");
     }
@@ -87,13 +99,14 @@ public class AccountingControllerTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+        statusCode = responseEntity.getStatusCode();
+        System.out.println("Status code: " + statusCode);
 
         assertNotNull(responseEntity);
+        assertEquals(200, responseEntity.getStatusCodeValue());
         System.out.println("All: " + accounting);
     }
 
-    //Demonstrating Business Logic when it is met
-    // -> this will display the now updated stuff as we are making a Profit since our expense was changed
     @Test
     public void e_getAllProfits() {
         String url = startURL + "profits";
@@ -102,9 +115,11 @@ public class AccountingControllerTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+        statusCode = responseEntity.getStatusCode();
+        System.out.println("Status code: " + statusCode);
 
         assertNotNull(responseEntity);
-        System.out.println(responseEntity);
+        assertEquals(200, responseEntity.getStatusCodeValue());
         System.out.println(responseEntity.getBody());
     }
 }
