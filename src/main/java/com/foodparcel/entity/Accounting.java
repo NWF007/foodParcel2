@@ -1,18 +1,23 @@
 package com.foodparcel.entity;
 
+import java.io.Serializable;
+
 /**
  * Author: Amy Johnston (218188773)
  * Accounting.java
  * Assignment 5
  */
 
-public class Accounting {
+public class Accounting  implements Serializable{
     private String statementId;
     private double income;
     private double expense;
     private double budget;
     private int incomeTransactionId;
     private int expenseTransactionId;
+
+    public Accounting(){
+    }
 
     private Accounting(Builder builder){
         this.statementId = builder.statementId;
