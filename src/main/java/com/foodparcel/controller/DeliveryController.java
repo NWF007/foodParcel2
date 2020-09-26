@@ -1,4 +1,4 @@
-/*package com.foodparcel.controller;
+package com.foodparcel.controller;
 
 import com.foodparcel.Service.DeliveryService;
 import com.foodparcel.Service.impl.DeliveryServiceImpl;
@@ -55,6 +55,5 @@ public class DeliveryController {
 
 
     }
-*/
 
 
