@@ -7,10 +7,11 @@ import com.foodparcel.Repository.ApplicationRepository;
 import com.foodparcel.Repository.impl.ApplicationRepositoryImpl;
 import com.foodparcel.Service.ApplicationService;
 import com.foodparcel.entity.Application;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
 public class ApplicationServiceImpl implements ApplicationService {
     private static ApplicationService service = null;
     private ApplicationRepository repository;
@@ -31,13 +32,13 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public Set<Application> applicationValuesThatAreEmpty() {
+    public Set<Application> noEmptyValues() {
         Set<Application> applications = getAll();
         Set<Application> applicationEmptyValues = new HashSet<>();
         for(Application application :applications)
         {
-            if(!application.getId().isEmpty() && !application.getFirstName().isEmpty() && !application.getLastName().isEmpty()
-                    && !application.getHomeAdrress().isEmpty());
+            if(!application.getId().isEmpty() && !application.getFirstName().isEmpty() &&
+                    !application.getLastName().isEmpty());
             {
                 applicationEmptyValues.add(application);
             }
