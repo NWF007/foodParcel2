@@ -6,9 +6,11 @@ import com.foodparcel.Repository.DonationRepository;
 import com.foodparcel.Repository.impl.DonationRepositoryImpl;
 import com.foodparcel.Service.DonationService;
 import com.foodparcel.entity.Donation;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class DonationServiceImpl implements DonationService {
 
     private static DonationService donationService = null;

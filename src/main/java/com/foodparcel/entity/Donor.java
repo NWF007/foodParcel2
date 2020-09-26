@@ -1,8 +1,13 @@
 package com.foodparcel.entity;
 
-public class Donor {
+import java.io.Serializable;
+
+public class Donor implements Serializable {
     public String firstName, surname, email, id, phoneNumber;
 
+    public Donor(){
+
+    }
     public Donor(Builder builder) {
         this.firstName = builder.firstName;
         this.surname = builder.surname;
