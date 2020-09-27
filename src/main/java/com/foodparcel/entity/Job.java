@@ -8,6 +8,8 @@ package com.foodparcel.entity;
 public class Job {
     private String jobTitle, jobNumber;
 
+    private Job(){}
+
     public Job(JobBuilder jobBuilder) {
         this.jobTitle = jobBuilder.jobTitle;
         this.jobNumber = jobBuilder.jobNumber;

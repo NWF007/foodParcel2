@@ -9,9 +9,11 @@ import com.foodparcel.Repository.EmployeeRepository;
 import com.foodparcel.Repository.impl.EmployeeRepositoryImpl;
 import com.foodparcel.Service.EmployeeService;
 import com.foodparcel.entity.Employee;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private static EmployeeService employeeService = null;
