@@ -56,13 +56,13 @@ public class DeliveryControllerTest {
         String url = baseURL + "read/" + delivery.getDeliveryID();
         System.out.println("URL: " + url);
         ResponseEntity<Delivery> deliveryResponse = restTemplate.getForEntity(url, Delivery.class);
-        assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
+        assertEquals(200, deliveryResponse.getStatusCodeValue());
         System.out.println("Read:" + deliveryResponse.getBody());
     }
 
     @Test
     public void c_update(){
-        Delivery updated = new Delivery.Builder().copy(delivery).setDeliveryAddress("test").setDeliveryDate("28 August 2020").build();
+        Delivery updated = new Delivery.Builder().copy(delivery).setDeliveryAddress("test").setDeliveryDate("29 August 2020").build();
         String url = baseURL + "update";
         System.out.println("URL : " +url);
         System.out.println("Updated data:" + updated);

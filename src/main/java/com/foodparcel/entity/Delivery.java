@@ -6,9 +6,13 @@ package com.foodparcel.entity;
  * 216178185
  */
 
-public class Delivery {
+public class Delivery  {
 
     private String deliveryAddress, deliveryDate, deliveryID;
+
+    public Delivery(){
+
+    }
 
     public Delivery(Builder builder){
         this.deliveryAddress = builder.deliveryAddress;

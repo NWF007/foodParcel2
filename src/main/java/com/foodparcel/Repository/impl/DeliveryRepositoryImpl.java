@@ -32,19 +32,27 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
     }
 
     public Set<Delivery> getAll () {
-        return deliveries;
+        return this.deliveries;
     }
 
 
     public Delivery create (Delivery delivery){
-        deliveries.add(delivery);
+        this.deliveries.add(delivery);
         return delivery;
     }
 
-    public Delivery read (String ID){
+    public Delivery read (String deliveryID){
+
+        Delivery delivery = this.deliveries
+                .stream()
+                .filter(deliveries1 -> deliveries1.getDeliveryID()
+                .trim()
+                .equalsIgnoreCase(deliveryID))
+                .findAny()
+                .orElse(null);
+        return delivery;
 
 
-        return deliveries.stream().filter(delivery -> delivery.getDeliveryID().equals(ID)).findAny().orElse(null);
     }
 
     public Delivery update (Delivery delivery){

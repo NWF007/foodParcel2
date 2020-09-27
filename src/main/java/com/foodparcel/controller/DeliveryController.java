@@ -46,6 +46,7 @@ public class DeliveryController {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable String id){
+
         this.deliveryService.delete(id);
     }
 
