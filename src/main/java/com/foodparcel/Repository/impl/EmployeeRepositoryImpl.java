@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
-    private static EmployeeRepositoryImpl employeeRepository = null;
+    private static EmployeeRepository employeeRepository = null;
     private Set<Employee> employeeDB;
 
     public EmployeeRepositoryImpl(){

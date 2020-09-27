@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class JobRepositoryImpl implements JobRepository {
 
-    private static JobRepositoryImpl jobRepository = null;
+    private static JobRepository jobRepository = null;
     private Set<Job> jobs;
 
     public JobRepositoryImpl(){
@@ -41,7 +41,7 @@ public class JobRepositoryImpl implements JobRepository {
     @Override
     public Job read(String title) {
         return this.jobs.stream()
-                .filter(job -> job.getJobTitle()
+                .filter(job -> job.getJobNumber()
                         .trim()
                         .equalsIgnoreCase(title))
                 .findAny()
@@ -50,7 +50,7 @@ public class JobRepositoryImpl implements JobRepository {
 
     @Override
     public Job update(Job job) {
-        Job oldJob = read(job.getJobTitle());
+        Job oldJob = read(job.getJobNumber());
         if (oldJob != null){
             this.jobs.remove(oldJob);
             this.jobs.add(job);
