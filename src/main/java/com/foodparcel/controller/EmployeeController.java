@@ -1,8 +1,12 @@
 package com.foodparcel.controller;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 import com.foodparcel.Service.impl.EmployeeServiceImpl;
 import com.foodparcel.entity.Employee;
-import com.foodparcel.factory.EmployeeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +21,6 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public Employee create(@RequestBody Employee employee){
-        //Employee newEmployee = EmployeeFactory.createEmployee(employee.getIdentityNumber(),employee.getFirstName(),employee.getLastName(), employee.getEmploymentDate(), employee.getJobTitle());
         return employeeService.create(employee);
     }
 

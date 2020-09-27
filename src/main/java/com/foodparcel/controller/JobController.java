@@ -1,8 +1,12 @@
 package com.foodparcel.controller;
 
+/**
+ * Author: Nico Fortuin
+ * Student number: 216237912
+ * */
+
 import com.foodparcel.Service.impl.JobServiceImpl;
 import com.foodparcel.entity.Job;
-import com.foodparcel.factory.JobFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +21,6 @@ public class JobController {
 
     @PostMapping("/create")
     public Job create(@RequestBody Job job){
-        //Job newJob = JobFactory.createJob(job.getJobTitle());
         return jobService.create(job);
     }
 
