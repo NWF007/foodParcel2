@@ -1,17 +1,21 @@
 package com.foodparcel.entity;
 
-public class Application {
+import java.io.Serializable;
+
+public class Application implements Serializable {
     private String id ;
-    private String firstName , lastName , homeAdrress ;
+    private String firstName , lastName , homeAddress ;
     private String contactNumber ;
     private int numberOfDependants ;
     private double income;
+
+    private Application(){}
 
     private Application (Builder builder){
         this.id= builder.id;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
-        this.homeAdrress = builder.homeAdrress;
+        this.homeAddress = builder.homeAddress;
         this.contactNumber = builder.contactNumber;
         this.numberOfDependants = builder.numberOfDependants;
         this.income = builder.income;
@@ -34,7 +38,7 @@ public class Application {
     }
 
     public String getHomeAdrress() {
-        return homeAdrress;
+        return homeAddress;
     }
 
     public double getIncome() {
@@ -53,7 +57,7 @@ public class Application {
                 ", numberOfDependants=" + numberOfDependants +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", homeAdrress='" + homeAdrress + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
                 ", income=" + income +
                 '}';
     }
@@ -61,7 +65,7 @@ public class Application {
     public static class Builder {
         private String id , contactNumber ;
         private int numberOfDependants ;
-        private String firstName , lastName , homeAdrress ;
+        private String firstName , lastName , homeAddress ;
         private double income;
 
 
@@ -86,7 +90,7 @@ public class Application {
             return  this;
         }
         public  Builder sethomeAddress(String homeAdrress) {
-            this.homeAdrress = homeAdrress;
+            this.homeAddress = homeAddress;
             return  this;
         }
         public  Builder setIncome (double income){
@@ -100,7 +104,7 @@ public class Application {
             this.numberOfDependants = application.numberOfDependants;
             this.firstName = application.firstName;
             this.lastName = application.lastName;
-            this.homeAdrress = application.homeAdrress;
+            this.homeAddress = application.homeAddress;
             this.income = application.income;
             return  this;
         }

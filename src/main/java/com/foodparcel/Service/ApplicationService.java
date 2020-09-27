@@ -9,6 +9,6 @@ import java.util.Set;
 public interface ApplicationService extends IService<Application, String> {
     Set<Application> getAll();
 
-    Set<Application> applicationValuesThatAreEmpty();
+    Set<Application> noEmptyValues();
 }
 

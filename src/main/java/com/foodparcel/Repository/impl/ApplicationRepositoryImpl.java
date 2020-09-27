@@ -9,6 +9,7 @@ import com.foodparcel.entity.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     private static ApplicationRepository repository = null;
