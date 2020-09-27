@@ -52,11 +52,22 @@ public class VolunteerRepositoryImplTest {
 
     }
     @Test
-    public void e_delete1() {
+    public void f_delete1() {
 
         boolean deleted  = volunteerRepository.delete1(volunteer.getVolunteerNum());
         Assert.assertTrue(deleted);
         System.out.println("Deleted: "+volunteer);
+
+    }
+
+    @Test
+    public void e_isAvailable(){
+
+        Volunteer availability = new Volunteer.Builder().copy(volunteer).setAvailability(true).build();
+        availability = volunteerRepository.isAvailable(availability);
+        assertNotSame(volunteer, availability);
+        System.out.println("before availability update: "+volunteer);
+        System.out.println("Updated: "+availability);
 
     }
 }

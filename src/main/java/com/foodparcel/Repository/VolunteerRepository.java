@@ -11,4 +11,6 @@ public interface VolunteerRepository extends IRepository<Volunteer,String> {
 
     boolean delete1(String id);
 
+    Volunteer isAvailable(Volunteer t);
+
 }

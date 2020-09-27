@@ -64,7 +64,18 @@ public class VolunteerServiceImplTest {
     }
 
     @Test
-    public void e_delete1() {
+    public void e_isAvailable(){
+
+        Volunteer availability = new Volunteer.Builder().copy(volunteer).setAvailability(true).build();
+        availability = service.isAvailable(availability);
+        assertNotSame(availability, volunteer);
+        System.out.println("Before availability update: "+volunteer);
+        System.out.println("after availability Updated: "+availability);
+
+    }
+
+    @Test
+    public void f_delete1() {
 
         boolean deleted  = service.delete1(volunteer.getVolunteerNum());
         Assert.assertTrue(deleted);

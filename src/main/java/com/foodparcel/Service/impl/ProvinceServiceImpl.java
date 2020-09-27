@@ -8,13 +8,15 @@ import com.foodparcel.Service.ProvinceService;
 import com.foodparcel.Service.VolunteerService;
 import com.foodparcel.entity.Province;
 import com.foodparcel.entity.Volunteer;
+import org.springframework.stereotype.Service;
+
 import java.util.Set;
 /*
  * Mncedisi Mngadi
  * 214210286
  * 3B
  */
-
+@Service
 public class ProvinceServiceImpl implements ProvinceService {
     private static ProvinceService service = null;
     private ProvinceRepository repository;
