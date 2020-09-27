@@ -2,7 +2,6 @@ package com.foodparcel.controller;
 
 import com.foodparcel.entity.Accounting;
 import com.foodparcel.factory.AccountingFactory;
-import com.sun.istack.internal.NotNull;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,13 @@ import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+
+/**
+ * Author: Amy Johnston (218188773)
+ * AccountingControllerTest.java
+ * Submission 9
+ * Date: 21 September 2020
+ */
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
