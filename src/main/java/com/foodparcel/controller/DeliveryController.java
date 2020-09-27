@@ -1,6 +1,5 @@
 package com.foodparcel.controller;
 
-import com.foodparcel.Service.DeliveryService;
 import com.foodparcel.Service.impl.DeliveryServiceImpl;
 import com.foodparcel.entity.Delivery;
 import com.foodparcel.factory.DeliveryFactory;
@@ -35,6 +34,7 @@ public class DeliveryController {
 
     @PostMapping("/update")
     public Delivery update(@RequestBody Delivery delivery){
+
         return deliveryService.update(delivery);
     }
 

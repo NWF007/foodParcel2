@@ -18,8 +18,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * Craig Bailey
@@ -41,37 +40,24 @@ public class DeliveryControllerTest {
     @Test
     public void a_create(){
         String url = baseURL + "create";
-        System.out.println("Url: " + url);
-        System.out.println("Post data: " + delivery );
-        ResponseEntity<Delivery> postResponse = restTemplate.postForEntity(url, delivery, Delivery.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        delivery = postResponse.getBody();
-        System.out.println("Saved data: " +delivery);
-        assertEquals(delivery.getDeliveryID(), postResponse.getBody().getDeliveryID());
-
-    }
-
-    @Test
-    public void d_getall() {
-        String url = baseURL + "all";
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.postForEntity(url, delivery, Delivery.class);
+        assertNotNull(deliveryResponse);
+        assertNotNull(deliveryResponse.getBody());
+        delivery = deliveryResponse.getBody();
         System.out.println("URL: " + url);
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> reponse = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println(reponse);
-        System.out.println(reponse.getBody());
-
+        System.out.println("Created data: " + delivery);
+        assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
 
     }
+
 
     @Test
     public void b_read(){
         String url = baseURL + "read/" + delivery.getDeliveryID();
         System.out.println("URL: " + url);
-        ResponseEntity<Delivery> reponse = restTemplate.getForEntity(url, Delivery.class);
-        assertEquals(delivery.getDeliveryID(), reponse.getBody().getDeliveryID());
-        System.out.println("Read:" + reponse.getBody());
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.getForEntity(url, Delivery.class);
+        assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
+        System.out.println("Read:" + deliveryResponse.getBody());
     }
 
     @Test
@@ -79,9 +65,11 @@ public class DeliveryControllerTest {
         Delivery updated = new Delivery.Builder().copy(delivery).setDeliveryAddress("test").setDeliveryDate("28 August 2020").build();
         String url = baseURL + "update";
         System.out.println("URL : " +url);
-        System.out.println("Post data:" + updated);
-        ResponseEntity<Delivery> reponse = restTemplate.postForEntity(url, updated, Delivery.class);
-        assertEquals(delivery.getDeliveryID(), reponse.getBody().getDeliveryID());
+        System.out.println("Updated data:" + updated);
+        System.out.println("Update complete!");
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.postForEntity(url, updated, Delivery.class);
+        assertNotEquals(delivery.getDeliveryDate(), updated.getDeliveryDate());
+        assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
 
     }
 
@@ -90,6 +78,20 @@ public class DeliveryControllerTest {
         String url = baseURL + "delete/" + delivery.getDeliveryID();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
+        System.out.println("Delete completed!");
+    }
+
+    @Test
+    public void d_getall() {
+        String url = baseURL + "all";
+        System.out.println("URL: " + url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        ResponseEntity<String> deliveryResponse = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        System.out.println(deliveryResponse);
+        System.out.println(deliveryResponse.getBody());
+
+
     }
 
 
