@@ -12,7 +12,7 @@ public class VolunteerFactoryTest {
     @Test
     public void createVolunteer() {
 
-        Volunteer volunteer = VolunteerFactory.createVolunteer(UUID.randomUUID().toString(),"Mncedisi","Mngadi",0745664245,911451256);
+        Volunteer volunteer = VolunteerFactory.builderVolunteer("Mncedisi","Mngadi",0745664245,911451256);
 
         assertNotNull(volunteer);
 

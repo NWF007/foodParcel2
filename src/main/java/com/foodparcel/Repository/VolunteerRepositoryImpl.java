@@ -77,6 +77,20 @@ public class VolunteerRepositoryImpl implements VolunteerRepository {
     }
 
     @Override
+    public Volunteer isAvailable(Volunteer volunteer) {
+
+        Volunteer oldVolunteer = read(volunteer.getVolunteerNum());
+
+        if(oldVolunteer !=null){
+
+            this.volunteersDB.remove(oldVolunteer);
+            this.volunteersDB.add(volunteer);
+
+        }
+        return volunteer;
+    }
+
+    @Override
     public void delete(String s) {
 
     }

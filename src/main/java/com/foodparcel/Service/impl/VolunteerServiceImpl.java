@@ -4,6 +4,9 @@ import com.foodparcel.Repository.VolunteerRepository;
 import com.foodparcel.Repository.VolunteerRepositoryImpl;
 import com.foodparcel.Service.VolunteerService;
 import com.foodparcel.entity.Volunteer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.HashSet;
 import java.util.Set;
 /*
@@ -12,10 +15,12 @@ import java.util.Set;
 * 3B
  */
 
+@Service
 public class VolunteerServiceImpl implements VolunteerService {
 
     private static VolunteerService service = null;
     private VolunteerRepository repository;
+
 
     private VolunteerServiceImpl(){
 
@@ -39,6 +44,11 @@ public class VolunteerServiceImpl implements VolunteerService {
     @Override
     public boolean delete1(String id) {
         return this.repository.delete1(id);
+    }
+
+    @Override
+    public Volunteer isAvailable(Volunteer t) {
+        return this.repository.isAvailable(t);
     }
 
     @Override

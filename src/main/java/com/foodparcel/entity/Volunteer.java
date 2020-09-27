@@ -1,6 +1,8 @@
 package com.foodparcel.entity;
 
-public class Volunteer {
+import java.io.Serializable;
+
+public class Volunteer implements Serializable {
 
     private String volunteerNum = "";
     private boolean availability = true;
@@ -9,6 +11,7 @@ public class Volunteer {
     private int deliveriesMade = 0;
     private int hoursWorked = 0;
 
+    private Volunteer(){}
 
     private Volunteer(Builder volunteer) {
 
