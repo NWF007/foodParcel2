@@ -10,4 +10,5 @@ public interface ProvinceRepository extends IRepository<Province, String> {
     Set<Province> getAll();
     boolean delete1(String id);
 
+
 }

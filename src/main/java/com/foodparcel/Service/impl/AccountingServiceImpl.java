@@ -4,6 +4,7 @@ import com.foodparcel.Repository.AccountingRepository;
 import com.foodparcel.Repository.impl.AccountingRepositoryImpl;
 import com.foodparcel.Service.AccountingService;
 import com.foodparcel.entity.Accounting;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
  * Submission 8
  * Date: 1 September 2020
  */
-
+@Service
 public class AccountingServiceImpl implements AccountingService {
 
     private static AccountingService accountingService = null;
@@ -22,7 +23,13 @@ public class AccountingServiceImpl implements AccountingService {
 
     private AccountingServiceImpl(){
         this.accountingRepository = AccountingRepositoryImpl.getAccountingRepository();
+    }
 
+    public static AccountingService getService(){
+        if(accountingService == null) {
+            accountingService = new AccountingServiceImpl();
+        }
+        return accountingService;
     }
 
     public static AccountingService getAccountingService(){

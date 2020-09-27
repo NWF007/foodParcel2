@@ -50,8 +50,8 @@ public class ApplicationServiceImplTest{
     }
 
     @org.junit.Test
-    public void e_ApplicationValuesThatAreEmpty() {
-        Set<Application> applications = service.applicationValuesThatAreEmpty();
+    public void e_notEmpty() {
+        Set<Application> applications = service.noEmptyValues();
         assertNotNull(application.getId());
         assertNotNull(application.getFirstName());
         assertNotNull(application.getLastName());

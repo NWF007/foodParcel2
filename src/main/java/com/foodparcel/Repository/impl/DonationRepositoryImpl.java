@@ -5,10 +5,10 @@ package com.foodparcel.Repository.impl;
 import com.foodparcel.Repository.DonationRepository;
 import com.foodparcel.entity.Donation;
 import com.foodparcel.entity.Donor;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
 import java.util.Set;
-
 public class DonationRepositoryImpl implements DonationRepository {
 
     private static DonationRepository donationRepository = null;

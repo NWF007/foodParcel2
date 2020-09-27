@@ -1,9 +1,13 @@
 package com.foodparcel.entity;
 
-public class Province {
+import java.io.Serializable;
+
+public class Province implements Serializable {
 
     private String provinceId ="";
     private String provinceDesc = "";
+
+    private Province(){}
 
     public Province(Builder provinceBuilder) {
         this.provinceId = provinceBuilder.provinceId;

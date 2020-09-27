@@ -16,4 +16,6 @@ public interface VolunteerService extends IService<Volunteer,String> {
 
     boolean delete1(String id);
 
+    Volunteer isAvailable(Volunteer t);//is for changing the status of a volunteer could be available or not
+
 }
