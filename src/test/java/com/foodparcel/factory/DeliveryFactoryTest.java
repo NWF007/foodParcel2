@@ -21,7 +21,7 @@ public class DeliveryFactoryTest {
 
         Boolean Yes = null;
 
-        Delivery delivery = DeliveryFactory.createDelivery("Cape Town", "28 August 2020", "1b324");
+        Delivery delivery = DeliveryFactory.createDelivery("Cape Town", "28 August 2020");
         System.out.println(delivery);
         Assert.assertEquals("1b324", delivery.getDeliveryID());
         Assert.assertNotNull(delivery);

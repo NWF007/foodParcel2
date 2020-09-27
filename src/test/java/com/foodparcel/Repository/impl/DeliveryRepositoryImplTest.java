@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class DeliveryRepositoryImplTest {
 
     private static DeliveryRepository deliveryRepository = DeliveryRepositoryImpl.getDeliveryRepository();
-    private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August 2020", "1b324");
+    private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August 2020");
 
 
     public void d_getAll() {

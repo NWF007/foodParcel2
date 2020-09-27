@@ -13,18 +13,14 @@ import com.foodparcel.util.IDGenerator;
 public class DeliveryFactory {
 
 
-    public static Delivery createDelivery (String deliveryAddress , String deliveryDate , String deliveryID) {
+    public static Delivery createDelivery(String deliveryAddress, String deliveryDate) {
 
         Delivery delivery = new Delivery.Builder()
                 .setDeliveryAddress(deliveryAddress)
                 .setDeliveryDate(deliveryDate)
-                .setDeliveryID(deliveryID)
                 .setDeliveryID(IDGenerator.generateId())
                 .build();
         return delivery;
 
     }
-
-
-
 }

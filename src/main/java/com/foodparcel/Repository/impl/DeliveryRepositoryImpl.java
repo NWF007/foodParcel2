@@ -8,9 +8,6 @@ import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
 import java.util.HashSet;
 import java.util.Set;
-import static javax.swing.text.html.parser.DTDConstants.ID;
-
-
 
 public class DeliveryRepositoryImpl implements DeliveryRepository {
 

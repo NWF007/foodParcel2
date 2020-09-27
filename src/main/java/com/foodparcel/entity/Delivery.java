@@ -46,7 +46,7 @@ public class Delivery {
         }
 
         public Builder setDeliveryDate (String deliveryDate){
-            this.deliveryDate = deliveryAddress;
+            this.deliveryDate = deliveryDate;
             return this;
         }
 
@@ -71,4 +71,3 @@ public class Delivery {
     }
 
 }
-

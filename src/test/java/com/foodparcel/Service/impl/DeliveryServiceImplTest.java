@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class DeliveryServiceImplTest {
 
     private static DeliveryService service = DeliveryServiceImpl.getService();
-    private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August", "1b324");
+    private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August");
 
     @Test
     public void d_getAll() {

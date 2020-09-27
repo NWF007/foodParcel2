@@ -18,7 +18,7 @@ import java.util.Set;
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
 
-    private static DeliveryService service = null;
+    private static DeliveryService service ;
     private DeliveryRepository deliveryRepository;
 
     private DeliveryServiceImpl() {
@@ -55,6 +55,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public void delete(String s) {
         this.deliveryRepository.delete(s);
+
 
     }
 }

@@ -23,38 +23,32 @@ public class DeliveryController {
     private DeliveryServiceImpl deliveryService;
 
     @PostMapping("/create")
-    public Delivery create(@RequestBody Delivery delivery){
-
-        return deliveryService.create(delivery);
+    public Delivery create (@RequestBody Delivery delivery){
+        Delivery newDelivery = DeliveryFactory.createDelivery(delivery.getDeliveryAddress(), delivery.getDeliveryDate());
+        return deliveryService.create(newDelivery);
     }
 
-    @GetMapping(path = "/find/{id}")
-    public Delivery findById(@PathVariable String id){
+    @GetMapping(path ="/read/{id}")
+    public Delivery read(@PathVariable String id){
 
-        Delivery deliveries = deliveryService.read(id);
-        return deliveries;
+        return deliveryService.read(id);
     }
 
-    @PutMapping("/update")
-    public void update(@RequestBody Delivery deliveries){
-
-        deliveryService.update(deliveries);
-
+    @PostMapping("/update")
+    public Delivery update(@RequestBody Delivery delivery){
+        return deliveryService.update(delivery);
     }
-
-    @DeleteMapping(path = "/delete/{id}")
-    public void delete(@PathVariable String id){
-        deliveryService.delete(id);
-    }
-
 
     @GetMapping("/all")
     public Set<Delivery> getall(){
         return deliveryService.getAll();
-    }
-
 
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable String id){
+        this.deliveryService.delete(id);
+    }
 
 
+}
