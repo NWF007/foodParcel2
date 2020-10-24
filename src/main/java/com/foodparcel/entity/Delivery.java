@@ -1,16 +1,22 @@
 
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Craig Bailey
  * 216178185
  */
 
+@Entity
 public class Delivery  {
 
-    private String deliveryAddress, deliveryDate, deliveryID;
+    @Id
+    private String deliveryID;
+    private String deliveryAddress, deliveryDate;
 
-    public Delivery(){
+    protected Delivery(){
 
     }
 

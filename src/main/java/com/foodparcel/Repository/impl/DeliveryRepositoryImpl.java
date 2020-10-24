@@ -1,14 +1,18 @@
-package com.foodparcel.Repository.impl;
+/*
+ package com.foodparcel.Repository.impl;
 
-/**Craig Bailey
- * 216178185
- */
+
+Craig Bailey
+    216178185
+
+
 
 import com.foodparcel.Repository.DeliveryRepository;
 import com.foodparcel.entity.Delivery;
 import java.util.HashSet;
 import java.util.Set;
 
+@Deprecated
 public class DeliveryRepositoryImpl implements DeliveryRepository {
 
     private static DeliveryRepositoryImpl deliveryRepository = null;
@@ -16,7 +20,7 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
 
 
     public DeliveryRepositoryImpl() {
-        deliveries = new HashSet<>();
+        //deliveries = new HashSet<>();
     }
 
     public static DeliveryRepository getDeliveryRepository() {
@@ -31,23 +35,23 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
         return null;
     }
 
-    public Set<Delivery> getAll () {
+    public Set<Delivery> getAll() {
         return this.deliveries;
     }
 
 
-    public Delivery create (Delivery delivery){
+    public Delivery create(Delivery delivery) {
         this.deliveries.add(delivery);
         return delivery;
     }
 
-    public Delivery read (String deliveryID){
+    public Delivery read(String deliveryID) {
 
         Delivery delivery = this.deliveries
                 .stream()
                 .filter(deliveries1 -> deliveries1.getDeliveryID()
-                .trim()
-                .equalsIgnoreCase(deliveryID))
+                        .trim()
+                        .equalsIgnoreCase(deliveryID))
                 .findAny()
                 .orElse(null);
         return delivery;
@@ -55,10 +59,10 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
 
     }
 
-    public Delivery update (Delivery delivery){
+    public Delivery update(Delivery delivery) {
 
         Delivery oldDelivery = read(delivery.getDeliveryID());
-        if (oldDelivery!= null) {
+        if (oldDelivery != null) {
             this.deliveries.remove(oldDelivery);
             this.deliveries.add(delivery);
         }
@@ -67,7 +71,7 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
     }
 
     @Override
-    public void delete (String ID){
+    public void delete(String ID) {
 
         String deliveryID = null;
         Delivery delivery = read(deliveryID);
@@ -75,9 +79,10 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
         if (delivery != null) {
             deliveries.remove(delivery);
 
-        }
+       }
 
 
     }
-
 }
+
+*/

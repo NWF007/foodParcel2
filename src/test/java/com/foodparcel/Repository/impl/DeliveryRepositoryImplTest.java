@@ -1,9 +1,10 @@
+/*
 package com.foodparcel.Repository.impl;
 
-/**
- * Craig Bailey
- * 216178185
- */
+
+  Craig Bailey
+  216178185
+
 
 
 
@@ -12,17 +13,19 @@ import com.foodparcel.factory.DeliveryFactory;
 import com.foodparcel.Repository.DeliveryRepository;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
 public class DeliveryRepositoryImplTest {
 
-    private static DeliveryRepository deliveryRepository = DeliveryRepositoryImpl.getDeliveryRepository();
+    @Autowired
+    private static DeliveryRepository deliveryRepository;
     private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August 2020");
 
 
     public void d_getAll() {
-        System.out.println("All Deliveries: " + deliveryRepository.getAll());
+        System.out.println("All Deliveries: " + deliveryRepository.findAll());
         Assert.assertNotNull(deliveryRepository);
     }
     @Test
@@ -56,3 +59,4 @@ public class DeliveryRepositoryImplTest {
     }
 }
 
+*/

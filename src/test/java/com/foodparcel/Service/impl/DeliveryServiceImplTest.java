@@ -1,8 +1,10 @@
+/*
 package com.foodparcel.Service.impl;
 
-/**Craig Bailey
- * 216178185
- */
+
+
+
+
 
 import com.foodparcel.Service.DeliveryService;
 import com.foodparcel.entity.Delivery;
@@ -11,14 +13,13 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Set;
-
-import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DeliveryServiceImplTest {
 
-    private static DeliveryService service = DeliveryServiceImpl.getService();
+    @Autowired
+    private static DeliveryService service;
     private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August");
 
     @Test
@@ -56,3 +57,5 @@ public class DeliveryServiceImplTest {
         System.out.println("Deleted: " + service.getAll());
     }
 }
+
+*/
