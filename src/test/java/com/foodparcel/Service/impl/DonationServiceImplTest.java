@@ -8,12 +8,15 @@ import com.foodparcel.factory.DonationFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DonationServiceImplTest {
 
-    private static DonationService donationService = DonationServiceImpl.getDonationService();
+    @Autowired
+    private DonationService donationService;
     private static Donation donation = DonationFactory.createDonation("testDate", 100);
 
     @Test

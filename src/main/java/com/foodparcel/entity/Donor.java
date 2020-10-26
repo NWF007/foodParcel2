@@ -1,9 +1,15 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Donor implements Serializable {
-    public String firstName, surname, email, id, phoneNumber;
+    @Id
+    public String id;
+    public String firstName, surname, email, phoneNumber;
+
 
     public Donor(){
 
