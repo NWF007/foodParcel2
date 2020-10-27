@@ -1,14 +1,22 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
+
 /**
  * Author: Nico Fortuin
  * Student number: 216237912
  * */
 
+@Entity
 public class Job {
-    private String jobTitle, jobNumber;
 
-    private Job(){}
+    @Id
+    private String jobNumber;
+    private String jobTitle;
+
+    protected Job(){}
 
     public Job(JobBuilder jobBuilder) {
         this.jobTitle = jobBuilder.jobTitle;
@@ -53,6 +61,20 @@ public class Job {
 
         public Job build(){
             return new Job(this);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            JobBuilder that = (JobBuilder) o;
+            return Objects.equals(jobTitle, that.jobTitle) &&
+                    jobNumber.equals(that.jobNumber);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(jobNumber);
         }
     }
 }

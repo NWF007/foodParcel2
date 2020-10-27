@@ -1,7 +1,7 @@
-package com.foodparcel.Repository.impl;
-/**Yusrah Soeker
+/* package com.foodparcel.Repository.impl;
+Yusrah Soeker
  * 218150768
- */
+
 import com.foodparcel.Repository.DonationRepository;
 import com.foodparcel.entity.Donation;
 import com.foodparcel.factory.DonationFactory;
@@ -9,11 +9,13 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DonationRepositoryImplTest {
 
-    private static DonationRepository donationRepository = DonationRepositoryImpl.getDonationRepository();
+    @Autowired
+    private static DonationRepository donationRepository;
     private static Donation donation = DonationFactory.createDonation("testDate", 100);
 
     @Test
@@ -49,3 +51,4 @@ public class DonationRepositoryImplTest {
         System.out.println("Get all: " + donationRepository.getAll());
     }
 }
+ */

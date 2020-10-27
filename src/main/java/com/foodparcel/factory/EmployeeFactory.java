@@ -18,7 +18,6 @@ public class EmployeeFactory {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmploymentDate(employmentDate)
-                .setJobTitle(job)
                 .build();
 
         return employee;

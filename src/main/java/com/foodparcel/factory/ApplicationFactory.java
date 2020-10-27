@@ -3,7 +3,7 @@ import com.foodparcel.entity.Application;
 
 public class ApplicationFactory {
     public static Application createApplication(String id, String firstName, String lastName,
-                                                String contactNumber, String homeAddress, int numberOfDependants, double income) {
+                                                 String homeAddress, String contactNumber, int numberOfDependants, double income) {
         if (!id.equals("0")) {
             return new Application.Builder().
                     setid(id)

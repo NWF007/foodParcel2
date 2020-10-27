@@ -3,50 +3,44 @@ package com.foodparcel.Service.impl;
  * 218150768
  */
 import com.foodparcel.Repository.DonorRepository;
-import com.foodparcel.Repository.impl.DonorRepositoryImpl;
 import com.foodparcel.Service.DonorService;
 import com.foodparcel.entity.Donor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class DonorServiceImpl implements DonorService {
 
-    private static DonorService donorService = null;
+    @Autowired
     private DonorRepository donorRepository;
-
-    private DonorServiceImpl(){
-        this.donorRepository = DonorRepositoryImpl.getDonorRepository();
-    }
-
-    public static DonorService getDonorService(){
-        if (donorService == null) donorService = new DonorServiceImpl();
-        return donorService;
-    }
-
 
     @Override
     public Set<Donor> getAll() {
-        return this.donorRepository.getAll();
+        return this.donorRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Donor create(Donor donor) {
-        return this.donorRepository.create(donor);
+        return this.donorRepository.save(donor);
     }
 
     @Override
     public Donor read(String s) {
-        return this.donorRepository.read(s);
+        return this.donorRepository.findById(s).orElseGet(null);
     }
 
     @Override
     public Donor update(Donor donor) {
-        return this.donorRepository.update(donor);
+        return create(donor);
     }
 
     @Override
     public void delete(String s) {
-        this.donorRepository.delete(s);
+        this.donorRepository.deleteById(s);
+        //if(this.donorRepository.existsById(s));
+            //return false;
+        //return true;
     }
 }

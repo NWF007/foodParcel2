@@ -1,45 +1,31 @@
 package com.foodparcel.Service.impl;
 
 import com.foodparcel.Repository.AccountingRepository;
-import com.foodparcel.Repository.impl.AccountingRepositoryImpl;
+//import com.foodparcel.Repository.impl.AccountingRepositoryImpl;
 import com.foodparcel.Service.AccountingService;
 import com.foodparcel.entity.Accounting;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Author: Amy Johnston (218188773)
  * AccountingServiceImpl.java
  * Submission 8
  * Date: 1 September 2020
+ * Edited: 25 October 2020
  */
 @Service
 public class AccountingServiceImpl implements AccountingService {
-
-    private static AccountingService accountingService = null;
+    @Autowired
     private AccountingRepository accountingRepository;
-
-    private AccountingServiceImpl(){
-        this.accountingRepository = AccountingRepositoryImpl.getAccountingRepository();
-    }
-
-    public static AccountingService getService(){
-        if(accountingService == null) {
-            accountingService = new AccountingServiceImpl();
-        }
-        return accountingService;
-    }
-
-    public static AccountingService getAccountingService(){
-        if (accountingService == null) accountingService = new AccountingServiceImpl();
-        return accountingService;
-    }
 
     @Override
     public Set<Accounting> getAll() {
-        return this.accountingRepository.getAll();
+        return this.accountingRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     //unique business logic as per Accounting -> when we make a Profit
@@ -59,21 +45,25 @@ public class AccountingServiceImpl implements AccountingService {
 
     @Override
     public Accounting create(Accounting accounting) {
-        return this.accountingRepository.create(accounting);
+        return this.accountingRepository.save(accounting);
     }
 
     @Override
     public Accounting read(String s) {
-        return this.accountingRepository.read(s);
+        return this.accountingRepository.findById(s).orElseGet(null);
     }
 
     @Override
     public Accounting update(Accounting accounting) {
-        return this.accountingRepository.update(accounting);
+        if(this.accountingRepository.existsById(accounting.getStatementId())){
+            return this.accountingRepository.save(accounting);
+        }
+        return null;
     }
 
     @Override
     public void delete(String s) {
-        this.accountingRepository.delete(s);
+        this.accountingRepository.deleteById(s);
     }
 }
+
