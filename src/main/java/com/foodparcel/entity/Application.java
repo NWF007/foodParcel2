@@ -1,15 +1,21 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Application implements Serializable {
+    @Id
     private String id ;
-    private String firstName , lastName , homeAddress ;
+    private String firstName;
+    private String lastName ;
+    private String homeAddress ;
     private String contactNumber ;
     private int numberOfDependants ;
     private double income;
 
-    private Application(){}
+    protected Application(){}
 
     private Application (Builder builder){
         this.id= builder.id;
@@ -37,7 +43,7 @@ public class Application implements Serializable {
         return lastName;
     }
 
-    public String getHomeAdrress() {
+    public String getHomeAddress() {
         return homeAddress;
     }
 
@@ -89,7 +95,7 @@ public class Application implements Serializable {
             this.lastName = lastName;
             return  this;
         }
-        public  Builder sethomeAddress(String homeAdrress) {
+        public  Builder sethomeAddress(String homeAddress) {
             this.homeAddress = homeAddress;
             return  this;
         }
