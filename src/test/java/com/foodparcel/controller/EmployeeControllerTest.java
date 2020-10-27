@@ -10,6 +10,7 @@ import com.foodparcel.entity.Job;
 import com.foodparcel.factory.EmployeeFactory;
 import com.foodparcel.factory.JobFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;

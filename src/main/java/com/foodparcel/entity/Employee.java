@@ -1,22 +1,28 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
+
 /**
  * Author: Nico Fortuin
  * Student number: 216237912
  * */
 
+@Entity
 public class Employee {
-    private String employeeNumber, identityNumber, firstName, lastName,  employmentDate;
-    private Job job;
 
-    public Employee() {}
+    @Id
+    private String employeeNumber;
+    private String identityNumber, firstName, lastName,  employmentDate;
+
+    protected Employee() {}
 
     public Employee(EmployeeBuilder builder) {
         this.employeeNumber = builder.employeeNumber;
         this.identityNumber = builder.identityNumber;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
-        this.job = builder.jobTitle;
         this.employmentDate = builder.employmentDate;
     }
 
@@ -36,10 +42,6 @@ public class Employee {
         return lastName;
     }
 
-    public Job getJobTitle() {
-        return job;
-    }
-
     public String getEmploymentDate() {
         return employmentDate;
     }
@@ -52,13 +54,11 @@ public class Employee {
                 ",\n firstName='" + firstName + '\'' +
                 ",\n lastName='" + lastName + '\'' +
                 ",\n employmentDate='" + employmentDate + '\'' +
-                ",\n jobTitle=" + job  + "\n"+
                 '}';
     }
 
     public static class EmployeeBuilder {
         private String employeeNumber, identityNumber, firstName, lastName, employmentDate;
-        private Job jobTitle;
 
         public EmployeeBuilder(){
 
@@ -84,10 +84,6 @@ public class Employee {
             return this;
         }
 
-        public EmployeeBuilder setJobTitle(Job jobTitle) {
-            this.jobTitle = jobTitle;
-            return this;
-        }
 
         public EmployeeBuilder setEmploymentDate(String employmentDate) {
             this.employmentDate = employmentDate;
@@ -100,12 +96,24 @@ public class Employee {
             this.firstName = employee.firstName;
             this.lastName = employee.lastName;
             this.employmentDate = employee.employmentDate;
-            this.jobTitle = employee.job;
             return this;
         }
 
         public Employee build(){
             return new Employee(this);
         };
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            EmployeeBuilder that = (EmployeeBuilder) o;
+            return employeeNumber.equals(that.employeeNumber);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(employeeNumber);
+        }
     }
 }
