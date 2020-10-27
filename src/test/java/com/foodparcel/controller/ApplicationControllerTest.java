@@ -24,11 +24,11 @@ import static org.junit.Assert.*;
 
 public class ApplicationControllerTest {
     Application application = ApplicationFactory.createApplication("2314567","Danielle",
-            "Johnson" ,"0781234567", " Mandalay",
+            "Johnson" ,"Mandalay", "0744992123 ",
             3,2500.89);
 
     @Autowired
-    private TestRestTemplate testRestTempl;
+    private TestRestTemplate testRestTempl = null;
     private String base = "http://localhost:8888/application";
 
     @Test
@@ -81,12 +81,4 @@ public class ApplicationControllerTest {
 
     }
 
-    @Ignore
-    @Test
-    public void f_noEmptyValues(){
-        String url= base + "/applicationValuesThatAreNotEmpty";
-        ResponseEntity<Application> valueResponse = testRestTempl.getForEntity(url, Application.class);
-        assertNotNull(valueResponse.getBody().getId());
-
-    }
 }
