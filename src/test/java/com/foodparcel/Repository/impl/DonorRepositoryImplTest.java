@@ -1,7 +1,9 @@
+/*
 package com.foodparcel.Repository.impl;
-/**Yusrah Soeker
- * 218150768
- */
+Yusrah Soeker
+ 218150768
+
+
 import com.foodparcel.Repository.DonorRepository;
 import com.foodparcel.entity.Donor;
 import com.foodparcel.factory.DonorFactory;
@@ -51,3 +53,4 @@ public class DonorRepositoryImplTest {
         System.out.println("Get all: " + donorRepository.getAll());
     }
 }
+ */

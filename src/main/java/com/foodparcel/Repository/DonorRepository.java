@@ -3,8 +3,11 @@ package com.foodparcel.Repository;
  * 218150768
  */
 import com.foodparcel.entity.Donor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Set;
 
-public interface DonorRepository extends IRepository <Donor, String> {
-    Set<Donor> getAll();
+@Repository
+public interface DonorRepository extends JpaRepository <Donor, String> {
 }

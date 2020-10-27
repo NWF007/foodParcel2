@@ -1,7 +1,10 @@
+/*
 package com.foodparcel.Repository.impl;
-/**Yusrah Soeker
- * 218150768
- */
+
+
+Yusrah Soeker
+218150768
+
 import com.foodparcel.Repository.DonorRepository;
 import com.foodparcel.entity.Donor;
 import org.springframework.stereotype.Repository;
@@ -60,3 +63,4 @@ public class DonorRepositoryImpl implements DonorRepository {
         return this.donorDB;
     }
 }
+*/
