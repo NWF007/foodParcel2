@@ -1,63 +1,63 @@
 package com.foodparcel.Service.impl;
 
 import com.foodparcel.Repository.ProvinceRepository;
-import com.foodparcel.Repository.ProvinceRepositoryImpl;
-import com.foodparcel.Repository.VolunteerRepository;
-import com.foodparcel.Repository.VolunteerRepositoryImpl;
 import com.foodparcel.Service.ProvinceService;
-import com.foodparcel.Service.VolunteerService;
 import com.foodparcel.entity.Province;
-import com.foodparcel.entity.Volunteer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 /*
  * Mncedisi Mngadi
  * 214210286
- * 3B
+* 3B
  */
 @Service
 public class ProvinceServiceImpl implements ProvinceService {
-    private static ProvinceService service = null;
+
+    @Autowired
     private ProvinceRepository repository;
-
-    private ProvinceServiceImpl(){
-
-        this.repository = ProvinceRepositoryImpl.getRepository();
-    }
-
-    public static ProvinceService getService(){
-
-        if(service == null) service = new ProvinceServiceImpl();
-        return  service ;
-
-    }
 
     @Override
     public Set<Province> getAll() {
 
-        return this.repository.getAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
 
     }
 
     @Override
     public boolean delete1(String id) {
-        return this.repository.delete1(id);
+        this.repository.deleteById(id);
+
+        if(this.repository.existsById(id)){
+
+            return false;
+
+        }
+
+        return true;
     }
 
     @Override
     public Province create(Province province) {
-        return this.repository.create(province);
+        return this.repository.save(province);
     }
 
     @Override
     public Province read(String s) {
-        return this.repository.read(s);
+        return this.repository.findById(s).orElse(null);
     }
 
     @Override
     public Province update(Province province) {
-        return this.repository.update(province);
+        if(this.repository.existsById(province.getProvinceId())){
+
+            return this.repository.save(province);
+        }
+
+        return null;
     }
 
     @Override

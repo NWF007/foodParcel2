@@ -1,14 +1,16 @@
 package com.foodparcel.Repository;
 
 import com.foodparcel.entity.Province;
+import com.foodparcel.entity.Volunteer;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 //Mncedisi Mngadi
 //214210286
-public interface ProvinceRepository extends IRepository<Province, String> {
+@Repository
+public interface ProvinceRepository extends JpaRepository<Province,String> {
 
-    Set<Province> getAll();
-    boolean delete1(String id);
 
 
 }
