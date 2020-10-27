@@ -1,13 +1,18 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
 public class Province implements Serializable {
 
+    @Id
     private String provinceId ="";
     private String provinceDesc = "";
 
-    private Province(){}
+    protected Province(){}
 
     public Province(Builder provinceBuilder) {
         this.provinceId = provinceBuilder.provinceId;
@@ -56,6 +61,19 @@ public class Province implements Serializable {
             return new Province(this);
         }
 
+
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Province province = (Province) o;
+        return provinceId.equals(province.provinceId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(provinceId);
     }
 
 }

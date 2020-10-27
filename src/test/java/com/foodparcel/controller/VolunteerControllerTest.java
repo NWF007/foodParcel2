@@ -3,6 +3,7 @@ package com.foodparcel.controller;
 import com.foodparcel.entity.Volunteer;
 import com.foodparcel.factory.VolunteerFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
