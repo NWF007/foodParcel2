@@ -6,10 +6,11 @@ package com.foodparcel.Repository;
  * */
 
 import com.foodparcel.entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-public interface EmployeeRepository extends IRepository<Employee, String> {
-
-    Set<Employee> getAll();
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, String> {
 }

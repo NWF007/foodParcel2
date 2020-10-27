@@ -6,50 +6,42 @@ package com.foodparcel.Service.impl;
  * */
 
 import com.foodparcel.Repository.EmployeeRepository;
-import com.foodparcel.Repository.impl.EmployeeRepositoryImpl;
 import com.foodparcel.Service.EmployeeService;
 import com.foodparcel.entity.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static EmployeeService employeeService = null;
+    @Autowired
     private EmployeeRepository employeeRepository;
-
-    private EmployeeServiceImpl(){
-        this.employeeRepository = EmployeeRepositoryImpl.employeeRepository();
-    }
-
-    public static EmployeeService getEmployeeService() {
-        if (employeeService == null) employeeService = new EmployeeServiceImpl();
-        return employeeService;
-    }
 
     @Override
     public Set<Employee> getAll() {
-        return this.employeeRepository.getAll();
+        return this.employeeRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Employee create(Employee employee) {
-        return this.employeeRepository.create(employee);
+        return this.employeeRepository.save(employee);
     }
 
     @Override
     public Employee read(String s) {
-        return this.employeeRepository.read(s);
+        return this.employeeRepository.findById(s).orElseGet(null);
     }
 
     @Override
     public Employee update(Employee employee) {
-        return this.employeeRepository.update(employee);
+        return this.employeeRepository.save(employee);
     }
 
     @Override
     public void delete(String s) {
-        this.employeeRepository.delete(s);
+        this.employeeRepository.deleteById(s);
     }
 }
