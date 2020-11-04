@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeliveryRepository extends JpaRepository<Delivery, String> {
 
-
-    }
+}
 
 

@@ -12,10 +12,7 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
@@ -32,6 +29,8 @@ import static org.junit.Assert.*;
 public class DeliveryControllerTest {
 
     private static Delivery delivery = DeliveryFactory.createDelivery("Long Street", "28 August 2020");
+    private static String SECURITY_USERNAME = "Admin";
+    private static String SECURITY_PASSWORD = "admin123";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -40,12 +39,13 @@ public class DeliveryControllerTest {
     @Test
     public void a_create(){
         String url = baseURL + "create";
-        ResponseEntity<Delivery> deliveryResponse = restTemplate.postForEntity(url, delivery, Delivery.class);
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, delivery, Delivery.class);
         assertNotNull(deliveryResponse);
         assertNotNull(deliveryResponse.getBody());
         delivery = deliveryResponse.getBody();
         System.out.println("URL: " + url);
         System.out.println("Created data: " + delivery);
+        assertEquals(HttpStatus.OK, deliveryResponse.getStatusCode());
         assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
 
     }
@@ -55,7 +55,8 @@ public class DeliveryControllerTest {
     public void b_read(){
         String url = baseURL + "read/" + delivery.getDeliveryID();
         System.out.println("URL: " + url);
-        ResponseEntity<Delivery> deliveryResponse = restTemplate.getForEntity(url, Delivery.class);
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Delivery.class);
+
         assertEquals(200, deliveryResponse.getStatusCodeValue());
         System.out.println("Read:" + deliveryResponse.getBody());
     }
@@ -77,7 +78,7 @@ public class DeliveryControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/" + delivery.getDeliveryID();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate.withBasicAuth("Admin", "admin123").delete(url);
         System.out.println("Delete completed!");
     }
 
@@ -87,7 +88,8 @@ public class DeliveryControllerTest {
         System.out.println("URL: " + url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> deliveryResponse = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> deliveryResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
+
         System.out.println(deliveryResponse);
         System.out.println(deliveryResponse.getBody());
 
