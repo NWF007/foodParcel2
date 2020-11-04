@@ -1,3 +1,4 @@
+/*
 //Danielle Johnson
 //Student no: 214104281
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ApplicationRepositoryImplTest {
 
-    private static ApplicationRepository repository = ApplicationRepositoryImpl.getRepository();
+    private static ApplicationRepository repository;
     //application 1
     private static Application application = ApplicationFactory.createApplication("5656675", "FHGkjhsdkj",
             "Johnson", "090678456", "17 Krisnic",
@@ -62,3 +63,5 @@ public class ApplicationRepositoryImplTest {
     }
 
 }
+
+ */

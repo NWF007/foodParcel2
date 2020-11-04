@@ -1,12 +1,16 @@
 package com.foodparcel.entity;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-public class Donation implements Serializable {
-    private String donationId, donationDate;
+@Entity
+public class Donation  {
+    @Id
+    private String donationId;
+    private String donationDate;
     private double donateAmount;
 
-    public Donation(){}
+    protected Donation(){}
 
     public Donation(Builder builder) {
         this.donationId = builder.donationId;

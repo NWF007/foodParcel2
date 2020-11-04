@@ -15,13 +15,15 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeServiceImplTest {
 
-    private static EmployeeService employeeService = EmployeeServiceImpl.getEmployeeService();
+    @Autowired
+    private static EmployeeService employeeService;
     private static IDGenerator idGenerator = new IDGenerator();
     private static Job job = JobFactory.createJob("Manager");
     private static Employee employee = EmployeeFactory.createEmployee("123", "Niko", "Fortuin", "12/09/2020", job);

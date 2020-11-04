@@ -1,14 +1,12 @@
 package com.foodparcel.Service.impl;
 
 import com.foodparcel.Repository.VolunteerRepository;
-import com.foodparcel.Repository.VolunteerRepositoryImpl;
 import com.foodparcel.Service.VolunteerService;
 import com.foodparcel.entity.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 /*
 * Mncedisi Mngadi
 * 214210286
@@ -18,52 +16,58 @@ import java.util.Set;
 @Service
 public class VolunteerServiceImpl implements VolunteerService {
 
-    private static VolunteerService service = null;
+
+    @Autowired
     private VolunteerRepository repository;
 
-
-    private VolunteerServiceImpl(){
-
-        this.repository = VolunteerRepositoryImpl.getRepository();
-    }
-
-    public static VolunteerService getService(){
-
-        if(service == null) service = new VolunteerServiceImpl();
-        return  service ;
-
-    }
 
     @Override
     public Set<Volunteer> getAll() {
 
-        return this.repository.getAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
 
     }
 
     @Override
     public boolean delete1(String id) {
-        return this.repository.delete1(id);
+
+        this.repository.deleteById(id);
+
+        if(this.repository.existsById(id)){
+
+            return false;
+
+        }
+
+        return true;
+
     }
 
     @Override
     public Volunteer isAvailable(Volunteer t) {
-        return this.repository.isAvailable(t);
-    }
+       return this.repository.save(t);//This method is for the Volunteer's availability status
+  }
 
     @Override
     public Volunteer create(Volunteer volunteer) {
-        return this.repository.create(volunteer);
+        return this.repository.save(volunteer);
     }
 
     @Override
     public Volunteer read(String s) {
-        return this.repository.read(s);
+        return this.repository.findById(s).orElse(null);
     }
 
     @Override
     public Volunteer update(Volunteer volunteer) {
-        return this.repository.update(volunteer);
+
+        if(this.repository.existsById(volunteer.getVolunteerNum())){
+
+            return this.repository.save(volunteer);
+        }
+
+        return null;
+
     }
 
     @Override

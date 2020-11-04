@@ -8,15 +8,18 @@ import com.foodparcel.entity.Application;
 import com.foodparcel.factory.ApplicationFactory;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.Set;
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ApplicationServiceImplTest{
 
-    private static ApplicationService service = ApplicationServiceImpl.getService();
+    @Autowired
+    private static ApplicationService service ;
     //application 1
     private static Application application = ApplicationFactory.createApplication("5656675", "FHGkjhsdkj",
-            "Johnson", "090678456", "17 Krisnic",
+            "Johnson", "17 Krisnic", "0981235673",
             2, 5600.00);
 
 
@@ -55,7 +58,7 @@ public class ApplicationServiceImplTest{
         assertNotNull(application.getId());
         assertNotNull(application.getFirstName());
         assertNotNull(application.getLastName());
-        assertNotNull(application.getHomeAdrress());
+        assertNotNull(application.getHomeAddress());
 
 
     }

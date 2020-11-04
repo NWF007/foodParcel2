@@ -1,14 +1,19 @@
 package com.foodparcel.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Author: Amy Johnston (218188773)
  * Accounting.java
  * Assignment 5
+ * Edited: 25 October 2020
  */
-
-public class Accounting  implements Serializable{
+@Entity
+public class Accounting {  //implements Serializable{
+    @Id
     private String statementId;
     private double income;
     private double expense;
@@ -16,7 +21,7 @@ public class Accounting  implements Serializable{
     private int incomeTransactionId;
     private int expenseTransactionId;
 
-    public Accounting(){
+    protected Accounting(){
     }
 
     private Accounting(Builder builder){
@@ -111,6 +116,19 @@ public class Accounting  implements Serializable{
 
         public Accounting build(){
             return new Accounting(this);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Builder builder = (Builder) o;
+            return statementId.equals(builder.statementId);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(statementId);
         }
     }
 }

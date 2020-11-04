@@ -12,13 +12,15 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JobServiceImplTest {
 
-    private static JobService jobService = JobServiceImpl.getJobService();
+    @Autowired
+    private static JobService jobService;
     private static Job job = JobFactory.createJob("Accountantt");
 
     @Test

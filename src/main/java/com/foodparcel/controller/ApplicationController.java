@@ -19,7 +19,7 @@ public class ApplicationController {
     @PostMapping("/create")
     public Application create(@RequestBody Application application) {
         Application controllerApplication = ApplicationFactory.createApplication(application.getId(),
-                application.getFirstName(),application.getLastName(),application.getHomeAdrress(),
+                application.getFirstName(),application.getLastName(),application.getHomeAddress(),
                 application.getContactNumber(),application.getNumberOfDependants(),application.getIncome());
         return applicationService.create(controllerApplication);
 
