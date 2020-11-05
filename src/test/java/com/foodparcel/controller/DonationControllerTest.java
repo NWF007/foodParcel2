@@ -23,6 +23,8 @@ import static org.junit.Assert.*;
 public class DonationControllerTest {
 
     private static Donation donation = DonationFactory.createDonation("testDate", 100);
+    private static String SECURITY_USERNAME = "Admin";
+    private static String SECURITY_PASSWORD = "admin123";
 
     @Autowired
     private TestRestTemplate restTemplate = null;
@@ -31,7 +33,7 @@ public class DonationControllerTest {
     @Test
     public void a_create() {
         String url = baseURL + "create";
-        ResponseEntity<Donation> donationResponse = restTemplate.postForEntity(url, donation, Donation.class);
+        ResponseEntity<Donation> donationResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, donation, Donation.class);
         assertNotNull(donationResponse);
         assertNotNull(donationResponse.getBody());
         donation = donationResponse.getBody();
@@ -45,7 +47,7 @@ public class DonationControllerTest {
     public void b_read() {
         String url = baseURL + "read/" + donation.getDonationId();
         System.out.println("URL: " + url);
-        ResponseEntity<Donation> donationResponse = restTemplate.getForEntity(url, Donation.class);
+        ResponseEntity<Donation> donationResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Donation.class);
         assertEquals(200, donationResponse.getStatusCodeValue());
         System.out.println("Read:" + donationResponse.getBody());
     }
@@ -58,7 +60,7 @@ public class DonationControllerTest {
         System.out.println("URL: " + url);
         System.out.println("Updated data: " + updated);
         System.out.println("Update completed!");
-        ResponseEntity<Donation> donationResponse = restTemplate.postForEntity(url, updated, Donation.class);
+        ResponseEntity<Donation> donationResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, updated, Donation.class);
         assertNotEquals(donation.getDonationDate(), updated.getDonationDate());
         assertEquals(donation.getDonationId(), donationResponse.getBody().getDonationId());
     }
@@ -67,7 +69,8 @@ public class DonationControllerTest {
     public void e_delete() {
         String url = baseURL + "delete/" + donation.getDonationId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        //restTemplate.withBasicAuth("Admin", "admin123").delete(url);
+        restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).delete(url);
         System.out.println("Delete completed!");
     }
 
@@ -77,7 +80,7 @@ public class DonationControllerTest {
         System.out.println("URL: " + url);
         HttpHeaders donationHeaders = new HttpHeaders();
         HttpEntity<String> donationEntity = new HttpEntity<>(null, donationHeaders);
-        ResponseEntity<String> donationResponse = restTemplate.exchange(url, HttpMethod.GET, donationEntity, String.class);
+        ResponseEntity<String> donationResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).exchange(url, HttpMethod.GET, donationEntity, String.class);
         assertNotNull(donationResponse);
         System.out.println(donationResponse);
         System.out.println(donationResponse.getBody());
