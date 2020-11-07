@@ -26,7 +26,7 @@ public class EmployeeServiceImplTest {
     private static EmployeeService employeeService;
     private static IDGenerator idGenerator = new IDGenerator();
     private static Job job = JobFactory.createJob("Manager");
-    private static Employee employee = EmployeeFactory.createEmployee("123", "Niko", "Fortuin", "12/09/2020", job);
+    private static Employee employee = EmployeeFactory.createEmployee("123", "Niko", "Fortuin", "12/09/2020");
 
     @Test
     public void d_getAll() {
