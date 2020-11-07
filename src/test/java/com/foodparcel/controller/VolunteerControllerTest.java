@@ -26,11 +26,13 @@ import static org.junit.Assert.*;
 public class VolunteerControllerTest {
 
 
-    private static Volunteer volunteer = VolunteerFactory.builderVolunteer("Mncedisi","Mngadi",0745664245,911451256);
+    private static Volunteer volunteer = VolunteerFactory.builderVolunteer("Selr","Mngadi",0745664245,911451256);
+    private static String SECURITY_USERNAME ="User";
+    private static String SECURITY_PASSWORD ="12345";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
-    private String baseUrl = "http://localhost:8888/volunteer/";
+    private String baseUrl = "http://localhost:8888/foodparcel/volunteer/";
 
 
 
@@ -41,10 +43,13 @@ public class VolunteerControllerTest {
         String url = baseUrl + "create";
         System.out.println();
         System.out.println("volunteer being posted: "+volunteer);
-        ResponseEntity<Volunteer> postResponse =  testRestTemplate.postForEntity(url, volunteer, Volunteer.class);
+        ResponseEntity<Volunteer> postResponse =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, volunteer, Volunteer.class);
         volunteer = postResponse.getBody();
         assertNotNull(postResponse.getBody());
         assertEquals(volunteer.getVolunteerNum(), postResponse.getBody().getVolunteerNum());
+        assertEquals(200, postResponse.getStatusCodeValue());
         System.out.println("Volunteer saved on the data structure: "+postResponse.getBody());
 
 
@@ -57,7 +62,7 @@ public class VolunteerControllerTest {
 
         String url = baseUrl+"read/"+volunteer.getVolunteerNum();
         System.out.println(url);
-        ResponseEntity<Volunteer> response = testRestTemplate.getForEntity(url, Volunteer.class);
+        ResponseEntity<Volunteer> response = testRestTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD).getForEntity(url, Volunteer.class);
         //assertNotNull(responseEntity.getBody().getVolunteerNum());
         System.out.println(response.getBody());
         assertEquals(volunteer.getVolunteerNum(), response.getBody().getVolunteerNum());
@@ -71,7 +76,9 @@ public class VolunteerControllerTest {
         System.out.println("Before update: "+volunteer);
         Volunteer update = new Volunteer.Builder().copy(volunteer).setFirstName("Bongani").build();
         String url = baseUrl+"update";
-        ResponseEntity<Volunteer> responseEntity = testRestTemplate.postForEntity(url, update, Volunteer.class);
+        ResponseEntity<Volunteer> responseEntity = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, update, Volunteer.class);
         assertNotNull(responseEntity.getBody());
         assertEquals(volunteer.getVolunteerNum(), responseEntity.getBody().getVolunteerNum());
         System.out.println("After update: "+responseEntity.getBody());
@@ -85,7 +92,10 @@ public class VolunteerControllerTest {
         String url = baseUrl+"all";
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-        ResponseEntity<String> responseEntity =  testRestTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
+        assertEquals(200, responseEntity.getStatusCodeValue());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
 
@@ -97,7 +107,9 @@ public class VolunteerControllerTest {
         System.out.println("Before availability update: "+volunteer);
         Volunteer availabilityStatus = new Volunteer.Builder().copy(volunteer).setAvailability(true).build();
         String url = baseUrl+"availability";
-        ResponseEntity<Volunteer> responseEntity = testRestTemplate.postForEntity(url, availabilityStatus, Volunteer.class);
+        ResponseEntity<Volunteer> responseEntity = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, availabilityStatus, Volunteer.class);
         assertNotSame(availabilityStatus.getVolunteerNum(), responseEntity.getBody().getVolunteerNum());
         System.out.println("After availability update: "+responseEntity.getBody());
 
@@ -107,7 +119,9 @@ public class VolunteerControllerTest {
     public void f_delete(){
 
         String url = baseUrl+"delete/"+volunteer.getVolunteerNum();
-        testRestTemplate.delete(url);
+        testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .delete(url);
 
     }
 
