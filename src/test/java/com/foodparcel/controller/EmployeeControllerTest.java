@@ -30,7 +30,11 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeControllerTest {
 
-    private static Employee employee = EmployeeFactory.createEmployee("123456","Nico", "Fortuin", "1 June 2020", JobFactory.createJob("Accountant"));
+    private static Employee employee = EmployeeFactory.createEmployee("15","Barack", "Obama", "2 November 2020"
+            );
+
+    private static String SECURITY_USERNAME = "admin";
+    private static String SECURITY_PASSWORD = "admin123";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -41,7 +45,8 @@ public class EmployeeControllerTest {
         String url = baseUrl + "create";
         System.out.println("URL: " + url);
         System.out.println("Post data: " +employee);
-        ResponseEntity<Employee> postResponse = restTemplate.postForEntity(url, employee, Employee.class);
+        ResponseEntity<Employee> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, employee, Employee.class);
         employee = postResponse.getBody();
         assertEquals(200, postResponse.getStatusCodeValue());
     }
@@ -50,7 +55,8 @@ public class EmployeeControllerTest {
     public void b_read() {
         String url = baseUrl + "find/" + employee.getEmployeeNumber();
         System.out.println("URL: " + url);
-        ResponseEntity<Employee> response = restTemplate.getForEntity(url, Employee.class);
+        ResponseEntity<Employee> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url, Employee.class);
         System.out.println(response);
         assertEquals(employee.getFirstName(), response.getBody().getFirstName());
     }
@@ -61,15 +67,18 @@ public class EmployeeControllerTest {
         String url = baseUrl + "update";
         System.out.println("URL: " +url);
         System.out.println("Post data: " + employeeUpdate);
-        ResponseEntity<Employee> response = restTemplate.postForEntity(url, employeeUpdate, Employee.class);
+        ResponseEntity<Employee> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, employeeUpdate, Employee.class);
         assertNotEquals(employee.getFirstName(), response.getBody().getFirstName());
     }
 
     @Test
+//    @Ignore
     public void e_delete() {
         String url = baseUrl + "delete/" + employee.getEmployeeNumber();
         System.out.println("Delete URL: " + url);
-        restTemplate.delete(url);
+        restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -78,7 +87,8 @@ public class EmployeeControllerTest {
         System.out.println("URL: " +url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
 
         System.out.println(response);
         assertEquals(200, response.getStatusCodeValue());
