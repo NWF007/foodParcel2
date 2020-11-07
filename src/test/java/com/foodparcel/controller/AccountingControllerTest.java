@@ -32,8 +32,8 @@ public class AccountingControllerTest {
             21937.32, 20000.00, 123343321, 82738273);
     //private static Accounting accounting = AccountingFactory.createAccounting(130467.89,
             //763773.10, 50000.00, 274528832, 934782847); //alternative values used for testing
-    private static String SECURITY_USERNAME = "Admin";//"Accountant"; "User";
-    private static String SECURITY_PASSWORD = "admin123";//"acc_175"; "12345";
+    private static String SECURITY_USERNAME = "Accountant";//"Admin"; "User";
+    private static String SECURITY_PASSWORD = "acc_175";//"admin123"; "12345";
 
     @Autowired
     private TestRestTemplate restTemplate = null;
@@ -55,7 +55,6 @@ public class AccountingControllerTest {
         System.out.println("Status code: " + statusCode);
         System.out.println("Saved data: " + accounting);
 
-        //assertEquals(accounting.getStatementId(), postResponse.getBody().getStatementId());
         assertEquals(200, postResponse.getStatusCodeValue());
 
         System.out.println("Created!");
@@ -74,7 +73,6 @@ public class AccountingControllerTest {
         statusCode = responseEntity.getStatusCode();
         System.out.println("Status code: " + statusCode);
 
-        //assertEquals(accounting.getStatementId(), responseEntity.getBody().getStatementId());
         assertNotNull(accounting.getStatementId());
         assertNotNull(responseEntity.getBody().getStatementId());
         assertEquals(200, responseEntity.getStatusCodeValue());
@@ -96,7 +94,6 @@ public class AccountingControllerTest {
 
         assertEquals(200, postResponse.getStatusCodeValue());
         assertEquals(accounting.getStatementId(), updated.getStatementId());
-        //assertEquals(accounting.getStatementId(), postResponse.getBody().getStatementId());
         assertNotEquals(accounting.getExpense(), updated.getExpense());
         System.out.println("Updated: " + updated);
     }

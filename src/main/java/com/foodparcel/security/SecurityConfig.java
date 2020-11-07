@@ -42,14 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/foodparcel/**/create/**").hasRole(ADMIN_ROLE)
-                .antMatchers(HttpMethod.POST, "/foodparcel/**/create",
+                .antMatchers(HttpMethod.POST, "/foodparcel/**/create/**",
                         "/foodparcel/**/update").hasRole(ACCOUNTANT_ROLE)
                 .antMatchers(HttpMethod.DELETE, "/foodparcel/accounting/delete/**").hasRole(ACCOUNTANT_ROLE)
-                .antMatchers(HttpMethod.GET, "/foodparcel/accounting/profits").hasRole(ACCOUNTANT_ROLE)
+                .antMatchers(HttpMethod.GET, "/foodparcel/accounting/profits",
+                        "/foodparcel/accounting/read/**", "/foodparcel/accounting/all/**").hasRole(ACCOUNTANT_ROLE)
                 .antMatchers(HttpMethod.GET, "/foodparcel/**/read/**", "/foodparcel/**/all/**").hasRole(USER_ROLE)
                 .and()
                 .csrf().disable();
-                //.formLogin().disable();
     }
 
     @Bean
