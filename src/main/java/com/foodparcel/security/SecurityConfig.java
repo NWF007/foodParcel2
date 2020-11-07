@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String USER_ROLE = "User";
     private static final String ADMIN_ROLE = "Admin";
-
+    private static final String ACCOUNTANT_ROLE = "Accountant";
 
 
     @Override
@@ -29,8 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("User")
                 .password(encoder().encode("12345"))
-                .roles(USER_ROLE);
-
+                .roles(USER_ROLE)
+                .and()
+                .withUser("Accountant")
+                .password(encoder().encode("acc_175"))
+                .roles(ACCOUNTANT_ROLE);
     }
 
     @Override
@@ -39,10 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/foodparcel/**/create/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST, "/foodparcel/**/create",
+                        "/foodparcel/**/update").hasRole(ACCOUNTANT_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/foodparcel/accounting/delete/**").hasRole(ACCOUNTANT_ROLE)
+                .antMatchers(HttpMethod.GET, "/foodparcel/accounting/profits").hasRole(ACCOUNTANT_ROLE)
                 .antMatchers(HttpMethod.GET, "/foodparcel/**/read/**", "/foodparcel/**/all/**").hasRole(USER_ROLE)
                 .and()
-                .csrf().disable()
-                .formLogin().disable();
+                .csrf().disable();
+                //.formLogin().disable();
     }
 
     @Bean
