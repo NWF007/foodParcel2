@@ -13,6 +13,7 @@ import java.util.Set;
  * AccountingController.java
  * Submission 9
  * Date: 21 September 2020
+ * Edited: 07 November 2020 - Assignment 11
  */
 
 @RestController
@@ -36,7 +37,6 @@ public class AccountingController {
         return accountingService.read(id);
     }
 
-    //@PutMapping("/update")
     @PostMapping("/update")
     public Accounting update(@RequestBody Accounting accounting){
         return accountingService.update(accounting);
