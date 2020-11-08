@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/province")
+@RequestMapping("/foodparcel/province")
 public class ProvinceController {
 
     @Autowired
