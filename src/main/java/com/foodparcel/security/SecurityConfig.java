@@ -18,8 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String USER_ROLE = "User";
     private static final String ADMIN_ROLE = "Admin";
 
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws  Exception{
         auth.inMemoryAuthentication()
@@ -30,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("User")
                 .password(encoder().encode("12345"))
                 .roles(USER_ROLE);
-
     }
 
     @Override
@@ -43,6 +40,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/donation/read/**", "/donor/read/**").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET, "/donation/all", "/donor/all").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.DELETE, "/donation/delete/**", "donor/delete/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST, "/accounting/create", "/accounting/update").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/accounting/delete/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/accounting/profits",
+                        "/accounting/read/**", "/accounting/all/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST,"/volunteer/**","/province/**","/volunteer_province/**").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"/volunteer/all/**","/province/all/**","/volunteer_province/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE,"/volunteer/delete/**", "/province/delete/**","/volunteer_province/**").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.POST, "/employee/**", "/job/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/employee/**", "/job/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.PUT, "/employee/**", "/job/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/employee/delete/**", "/job/delete/**").hasRole(ADMIN_ROLE)
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
