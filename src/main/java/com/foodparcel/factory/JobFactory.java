@@ -11,8 +11,9 @@ import com.foodparcel.util.IDGenerator;
 public class JobFactory {
 
     public static Job createJob(String jobTitle){
+        String jobNum = IDGenerator.generateId();
         Job job = new Job.JobBuilder()
-                .setJobNumber(IDGenerator.generateId())
+                .setJobNumber(jobNum)
                 .setJobTitle(jobTitle)
                 .build();
 

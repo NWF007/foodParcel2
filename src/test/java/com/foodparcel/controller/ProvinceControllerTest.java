@@ -24,10 +24,12 @@ import static org.junit.Assert.*;
 public class ProvinceControllerTest {
 
     private static Province province = ProvinceFactory.builderProvince("Kwazulu natal");
+    private static String SECURITY_USERNAME ="User";
+    private static String SECURITY_PASSWORD ="12345";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
-    private String baseUrl = "http://localhost:8888/province/";
+    private String baseUrl = "http://localhost:8888/foodparcel/province/";
 
     @Test
     public void a_create() {
@@ -36,10 +38,13 @@ public class ProvinceControllerTest {
         String url = baseUrl + "create";
         System.out.println();
         System.out.println("province being posted: "+province);
-        ResponseEntity<Province> postResponse =  testRestTemplate.postForEntity(url, province, Province.class);
+        ResponseEntity<Province> postResponse =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, province, Province.class);
         province = postResponse.getBody();
         assertNotNull(postResponse.getBody());
         assertEquals(province.getProvinceId(), postResponse.getBody().getProvinceId());
+        assertEquals(200, postResponse.getStatusCodeValue());
         System.out.println("Province saved on the data structure: "+postResponse.getBody());
 
     }
@@ -50,7 +55,10 @@ public class ProvinceControllerTest {
         String url = baseUrl+"all";
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-        ResponseEntity<String> responseEntity =  testRestTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
+        assertEquals(200, responseEntity.getStatusCodeValue());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
 
@@ -61,7 +69,9 @@ public class ProvinceControllerTest {
 
         String url = baseUrl+"read/"+province.getProvinceId();
         System.out.println(url);
-        ResponseEntity<Province> response = testRestTemplate.getForEntity(url, Province.class);
+        ResponseEntity<Province> response = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url, Province.class);
         //assertNotNull(responseEntity.getBody().getVolunteerNum());
         System.out.println(response.getBody());
         assertEquals(province.getProvinceId(), response.getBody().getProvinceId());
@@ -75,7 +85,9 @@ public class ProvinceControllerTest {
         System.out.println("Before update: "+province);
         Province update = new Province.Builder().copy(province).setProvinceDesc("Western Cape").build();
         String url = baseUrl+"update";
-        ResponseEntity<Province> responseEntity = testRestTemplate.postForEntity(url, update, Province.class);
+        ResponseEntity<Province> responseEntity = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, update, Province.class);
         assertNotNull(responseEntity.getBody());
         assertEquals(province.getProvinceId(), responseEntity.getBody().getProvinceId());
         System.out.println("After update: "+responseEntity.getBody());
@@ -86,7 +98,9 @@ public class ProvinceControllerTest {
     public void e_delete() {
 
         String url = baseUrl+"delete/"+province.getProvinceId();
-        testRestTemplate.delete(url);
+        testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .delete(url);
 
     }
 }

@@ -1,7 +1,9 @@
 package com.foodparcel.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.foodparcel.util.IDGenerator;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -13,6 +15,9 @@ import java.util.Objects;
 public class Job {
 
     @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(nullable = false)
     private String jobNumber;
     private String jobTitle;
 
