@@ -32,10 +32,10 @@ public class DeliveryController {
         return deliveryService.read(id);
     }
 
-    @PostMapping("/update")
-    public Delivery update(@RequestBody Delivery delivery){
+    @PutMapping("/update")
+    public void update(Delivery delivery){
 
-        return deliveryService.update(delivery);
+        deliveryService.update(delivery);
     }
 
     @GetMapping("/all")
