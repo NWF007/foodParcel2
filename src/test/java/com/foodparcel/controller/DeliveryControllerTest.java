@@ -68,9 +68,9 @@ public class DeliveryControllerTest {
         System.out.println("URL : " +url);
         System.out.println("Updated data:" + updated);
         System.out.println("Update complete!");
-        ResponseEntity<Delivery> deliveryResponse = restTemplate.postForEntity(url, updated, Delivery.class);
+        ResponseEntity<Delivery> deliveryResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, updated, Delivery.class);
         assertNotEquals(delivery.getDeliveryDate(), updated.getDeliveryDate());
-        assertEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
+        assertNotEquals(delivery.getDeliveryID(), deliveryResponse.getBody().getDeliveryID());
 
     }
 
