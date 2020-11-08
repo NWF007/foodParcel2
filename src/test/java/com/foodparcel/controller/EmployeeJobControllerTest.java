@@ -4,6 +4,7 @@ import com.foodparcel.entity.EmployeeJob;
 import com.foodparcel.entity.EmployeeJobId;
 import com.foodparcel.factory.EmployeeJobFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -23,7 +24,9 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeJobControllerTest {
 
-    private static EmployeeJob employeeJob = EmployeeJobFactory.create("755fadf8-9e1e-4ba2-a30d-63b9b7d9affc", "35c0624c-d70f-4c5f-91d5-b0254e3c8009");
+    private static EmployeeJob employeeJob = EmployeeJobFactory.create("5fadf8-9e1e-4ba2-a30d-63b9b7d9affc", "35c0624c-d70f-4c5f-91d5-b0254e3c8009");
+    private static String SECURITY_USERNAME = "admin";
+    private static String SECURITY_PASSWORD = "admin123";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -34,7 +37,8 @@ public class EmployeeJobControllerTest {
         String url = baseUrl + "create";
         System.out.println("URL: " +url);
         System.out.println("Post data: " +employeeJob);
-        ResponseEntity<EmployeeJob> postResponse = testRestTemplate.postForEntity(url, employeeJob, EmployeeJob.class);
+        ResponseEntity<EmployeeJob> postResponse = testRestTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, employeeJob, EmployeeJob.class);
         employeeJob = postResponse.getBody();
         assertEquals(200, postResponse.getStatusCodeValue());
     }
@@ -43,7 +47,8 @@ public class EmployeeJobControllerTest {
     public void b_read() {
         String url = baseUrl + "read/" + employeeJob.getJobNumber();
         System.out.println("URL: " + url);
-        ResponseEntity<EmployeeJob> response = testRestTemplate.getForEntity(url, EmployeeJob.class);
+        ResponseEntity<EmployeeJob> response = testRestTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url, EmployeeJob.class);
         System.out.println(response);
         //assertEquals(employeeJob.getJobNumber(), response.getBody().getJobNumber());
     }
@@ -54,15 +59,18 @@ public class EmployeeJobControllerTest {
         String url = baseUrl + "update";
         System.out.println("URL: " + url);
         System.out.println("Post data: " +employeeJobUpdate);
-        ResponseEntity<EmployeeJob> response = testRestTemplate.postForEntity(url, employeeJobUpdate, EmployeeJob.class);
+        ResponseEntity<EmployeeJob> response = testRestTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, employeeJobUpdate, EmployeeJob.class);
         assertNotEquals(employeeJob.getJobNumber(), response.getBody().getJobNumber());
     }
 
     @Test
+//    @Ignore
     public void e_delete() {
         String url = baseUrl + "delete/" + employeeJob.getJobNumber();
         System.out.println("Delete URL: " +url);
-        testRestTemplate.delete(url);
+        testRestTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -71,7 +79,8 @@ public class EmployeeJobControllerTest {
         System.out.println("URL: " + url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = testRestTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response = testRestTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(response);
         assertEquals(200, response.getStatusCodeValue());
     }

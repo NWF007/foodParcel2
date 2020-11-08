@@ -24,12 +24,13 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VolunteerProvinceControllerTest {
 
-    private static VolunteerProvince volunteerProvince = VolunteerProvinceFactory.buildVolunteerProvince("97a924f0-6c90-454c-b337-03d3e0b2d544", "34877b87-d638-4111-a526-edae3d1551af");
-
+    private static VolunteerProvince volunteerProvince = VolunteerProvinceFactory.buildVolunteerProvince("09a1ee5f-21ca-4d03-b637-6d6233297f89", "9523e4df-5035-414f-8065-092159887c6c");
+    private static String SECURITY_USERNAME ="User";
+    private static String SECURITY_PASSWORD ="12345";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
-    private String baseUrl = "http://localhost:8888/volunteerProvince/";
+    private String baseUrl = "http://localhost:8888/foodparcel/volunteerProvince/";
 
     @Test
     public void a_create() {
@@ -38,7 +39,9 @@ public class VolunteerProvinceControllerTest {
         String url = baseUrl + "create";
         System.out.println();
         System.out.println("volunteerProvince being posted: "+volunteerProvince);
-        ResponseEntity<VolunteerProvince> postResponse =  testRestTemplate.postForEntity(url, volunteerProvince, VolunteerProvince.class);
+        ResponseEntity<VolunteerProvince> postResponse =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, volunteerProvince, VolunteerProvince.class);
         volunteerProvince = postResponse.getBody();
         assertNotNull(postResponse.getBody());
         assertEquals(volunteerProvince.getVolunteerNum(), postResponse.getBody().getVolunteerNum());
@@ -52,7 +55,9 @@ public class VolunteerProvinceControllerTest {
 
         String url = baseUrl+"read/"+volunteerProvince.getVolunteerNum();
         System.out.println(url);
-        ResponseEntity<VolunteerProvince> response = testRestTemplate.getForEntity(url, VolunteerProvince.class);
+        ResponseEntity<VolunteerProvince> response = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url, VolunteerProvince.class);
         //assertNotNull(responseEntity.getBody().getVolunteerNum());
         System.out.println(response.getBody());
         assertEquals(volunteerProvince.getVolunteerNum(), response.getBody().getVolunteerNum());
@@ -66,7 +71,9 @@ public class VolunteerProvinceControllerTest {
         String url = baseUrl+"all";
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-        ResponseEntity<String> responseEntity =  testRestTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity =  testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
 
@@ -78,7 +85,9 @@ public class VolunteerProvinceControllerTest {
         System.out.println("Before update: "+volunteerProvince);
         VolunteerProvince update = new VolunteerProvince.Builder().copy(volunteerProvince).setVolunteerNum("245115").build();
         String url = baseUrl+"update";
-        ResponseEntity<VolunteerProvince> responseEntity = testRestTemplate.postForEntity(url, update, VolunteerProvince.class);
+        ResponseEntity<VolunteerProvince> responseEntity = testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, update, VolunteerProvince.class);
         //assertNotNull(responseEntity.getBody());
         //assertEquals(update.getVolunteerNum(), responseEntity.getBody().getVolunteerNum());
         System.out.println("After update: "+responseEntity.getBody());
@@ -89,7 +98,9 @@ public class VolunteerProvinceControllerTest {
     public void e_delete() {
 
         String url = baseUrl+"delete/"+volunteerProvince.getVolunteerNum();
-        testRestTemplate.delete(url);
+        testRestTemplate
+                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .delete(url);
 
 
     }
