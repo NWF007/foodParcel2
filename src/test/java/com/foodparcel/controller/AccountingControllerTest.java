@@ -32,12 +32,12 @@ public class AccountingControllerTest {
             21937.32, 20000.00, 123343321, 82738273);
     //private static Accounting accounting = AccountingFactory.createAccounting(130467.89,
             //763773.10, 50000.00, 274528832, 934782847); //alternative values used for testing
-    private static String SECURITY_USERNAME = "Accountant";//"Admin"; "User";
-    private static String SECURITY_PASSWORD = "acc_175";//"admin123"; "12345";
+    private static String SECURITY_USERNAME = "Admin"; //"User";
+    private static String SECURITY_PASSWORD = "admin123"; //"12345";
 
     @Autowired
     private TestRestTemplate restTemplate = null;
-    private String startURL = "http://localhost:8888/foodparcel/accounting/";
+    private String startURL = "http://localhost:8888/accounting/";
     private HttpStatus statusCode;
 
     @Test
@@ -87,7 +87,7 @@ public class AccountingControllerTest {
 
         System.out.println("Old: " + accounting);
         Accounting updated = new Accounting.Builder().copy(accounting).setExpense(12937.32).build();
-        ResponseEntity<Accounting> postResponse = restTemplate.withBasicAuth("Accountant", "acc_175")
+        ResponseEntity<Accounting> postResponse = restTemplate.withBasicAuth("Admin", "admin123")
                 .postForEntity(url, updated, Accounting.class);
         statusCode = postResponse.getStatusCode();
         System.out.println("Status code: " + statusCode);
@@ -106,7 +106,7 @@ public class AccountingControllerTest {
         //Specify the id you want to delete by copying it in from when it was created
         //String url = startURL + "delete/" + "d52fd493-6f71-45ee-bd82-1734a5c30d32";
         System.out.println("URL: " + url);
-        restTemplate.withBasicAuth("Accountant", "acc_175") //only someone who is an accountant can delete
+        restTemplate.withBasicAuth("Admin", "admin123") //only someone who is an admin can delete
                 .delete(url);
         System.out.println("Deleted!");
     }
@@ -135,7 +135,7 @@ public class AccountingControllerTest {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
-        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth("Accountant", "acc_175")
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth("Admin", "admin123")
                 .exchange(url, HttpMethod.GET, httpEntity, String.class);
         statusCode = responseEntity.getStatusCode();
         System.out.println("Status code: " + statusCode);

@@ -17,7 +17,7 @@ import java.util.Set;
  */
 
 @RestController
-@RequestMapping("/foodparcel/accounting")
+@RequestMapping("/accounting")
 public class AccountingController {
 
     @Autowired

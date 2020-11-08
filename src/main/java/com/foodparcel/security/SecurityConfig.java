@@ -17,8 +17,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String USER_ROLE = "User";
     private static final String ADMIN_ROLE = "Admin";
-    private static final String ACCOUNTANT_ROLE = "Accountant";
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws  Exception{
@@ -29,11 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("User")
                 .password(encoder().encode("12345"))
-                .roles(USER_ROLE)
-                .and()
-                .withUser("Accountant")
-                .password(encoder().encode("acc_175"))
-                .roles(ACCOUNTANT_ROLE);
+                .roles(USER_ROLE);
     }
 
     @Override
@@ -41,15 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/foodparcel/**/create/**").hasRole(ADMIN_ROLE)
-                .antMatchers(HttpMethod.POST, "/foodparcel/**/create/**",
-                        "/foodparcel/**/update").hasRole(ACCOUNTANT_ROLE)
-                .antMatchers(HttpMethod.DELETE, "/foodparcel/accounting/delete/**").hasRole(ACCOUNTANT_ROLE)
-                .antMatchers(HttpMethod.GET, "/foodparcel/accounting/profits",
-                        "/foodparcel/accounting/read/**", "/foodparcel/accounting/all/**").hasRole(ACCOUNTANT_ROLE)
-                .antMatchers(HttpMethod.GET, "/foodparcel/**/read/**", "/foodparcel/**/all/**").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.POST, "/accounting/create/**", "/accounting/update").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/accounting/delete/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/accounting/profits",
+                        "/accounting/read/**", "/accounting/all/**").hasRole(ADMIN_ROLE)
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .formLogin().disable();
     }
 
     @Bean
