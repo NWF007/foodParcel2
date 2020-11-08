@@ -87,7 +87,7 @@ public class AccountingControllerTest {
 
         System.out.println("Old: " + accounting);
         Accounting updated = new Accounting.Builder().copy(accounting).setExpense(12937.32).build();
-        ResponseEntity<Accounting> postResponse = restTemplate.withBasicAuth("Admin", "admin123")
+        ResponseEntity<Accounting> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
                 .postForEntity(url, updated, Accounting.class);
         statusCode = postResponse.getStatusCode();
         System.out.println("Status code: " + statusCode);
@@ -106,8 +106,7 @@ public class AccountingControllerTest {
         //Specify the id you want to delete by copying it in from when it was created
         //String url = startURL + "delete/" + "d52fd493-6f71-45ee-bd82-1734a5c30d32";
         System.out.println("URL: " + url);
-        restTemplate.withBasicAuth("Admin", "admin123") //only someone who is an admin can delete
-                .delete(url);
+        restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).delete(url);
         System.out.println("Deleted!");
     }
 
@@ -135,7 +134,7 @@ public class AccountingControllerTest {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
-        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth("Admin", "admin123")
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
                 .exchange(url, HttpMethod.GET, httpEntity, String.class);
         statusCode = responseEntity.getStatusCode();
         System.out.println("Status code: " + statusCode);

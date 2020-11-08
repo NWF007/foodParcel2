@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/accounting/create/**", "/accounting/update").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST, "/accounting/create", "/accounting/update").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.DELETE, "/accounting/delete/**").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/accounting/profits",
                         "/accounting/read/**", "/accounting/all/**").hasRole(ADMIN_ROLE)
