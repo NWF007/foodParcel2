@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
