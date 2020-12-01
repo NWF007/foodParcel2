@@ -18,6 +18,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/accounting")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountingController {
 
     @Autowired

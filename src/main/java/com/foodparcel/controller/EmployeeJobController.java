@@ -9,6 +9,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/employeejob")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeJobController {
 
     @Autowired
